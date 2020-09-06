@@ -1,0 +1,17 @@
+export { default as Main } from './Main';
+export { default as About } from './About';
+export { default as TestManage } from './TestManage';
+export { default as ColumnManage } from './ColumnManage';
+export { default as UserManage } from './UserManage';
+export { default as AddPkg } from './AddPkg';
+export { default as AddCol } from './AddCol';
+export { default as ee } from './SurveyScreen';
+export { default as ModifyPkg } from './ModifyPkg';
+export { default as SmsTest } from './SmsTest';
+export { default as TestStartPage } from './TestStartPage';
+export { default as TestResult } from './TestResult';
+export { default as CoupleManage } from './CoupleManage';
+export { default as ColumnScreen } from './ColumnScreen';
+export { default as VideoManage } from './VideoManage';
+export { default as AddVideo } from './AddVideo';
+export { default as RevisePkg } from './RevisePkg';

@@ -1,0 +1,53 @@
+
+a.no-uline { 
+    text-decoration:none !important;
+    color: black;
+}
+a:link {  
+    text-decoration: none;
+    color: black;
+}
+a:visited { 
+    text-decoration: none;
+    color: black;
+}
+.filebox label { display: inline-block; padding: .5em .75em; color: #999; font-size: inherit; line-height: normal; vertical-align: middle; background-color: #fdfdfd; cursor: pointer; border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; }
+
+.filebox input[type="file"] {
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0; 
+}
+.MuiPaper-elevation6{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px !important;
+    width: 600px;
+    height: 80px;
+    margin-bottom: 92px;
+}
+.MuiSvgIcon-root{
+    width: 1em !important;
+    height: 1em !important;
+}
+.MuiSnackbarContent-message {
+    padding: 8px 0;
+    font-size: 24px;
+}
+.MuiSnackbar-anchorOriginBottomCenter{
+    bottom: 0;
+}
+.MuiSnackbar-anchorOriginBottomCenter{
+    bottom: 0 !important;
+}
+.MuiPaper-elevation6{
+    margin-bottom : 70px;
+    width: 96vw !important;
+}
