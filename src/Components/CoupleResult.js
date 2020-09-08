@@ -1484,7 +1484,7 @@ class CoupleResult extends Component {
           variant="h6"
           style={{ marginTop: "35px", marginBottom: "5px" }}
         >
-          2. 서로를 상대를 체크한 행동유형 비교표
+          2. 서로가 상대를 체크한 행동유형 비교표
         </Typography>
         <Box
           style={{
@@ -1914,7 +1914,7 @@ class CoupleResult extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  배우자의 스타일
+                  배우자가 체크한 나의 스타일
                 </Box>
               </Typography>
             </Box>
@@ -1989,10 +1989,10 @@ class CoupleResult extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  {new DiscDataManage(phusbandDISC)?.getTypes()?.Type ?? ""}(
-                  {new DiscDataManage(phusbandDISC)?.getTypes()?.TypeName ?? ""}
+                  {new DiscDataManage(pwifeDISC)?.getTypes()?.Type ?? ""}(
+                  {new DiscDataManage(pwifeDISC)?.getTypes()?.TypeName ?? ""}
                   ) :{" "}
-                  {new DiscDataManage(phusbandDISC)?.getTypes()?.ProType ?? ""}
+                  {new DiscDataManage(pwifeDISC)?.getTypes()?.ProType ?? ""}
                 </Box>
               </Typography>
             </Box>
@@ -2069,7 +2069,7 @@ class CoupleResult extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  {new DiscDataManage(phusbandDISC)?.getTypes()?.Character ??
+                  {new DiscDataManage(pwifeDISC)?.getTypes()?.Character ??
                     ""}
                 </Box>
               </Typography>
@@ -2145,7 +2145,7 @@ class CoupleResult extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  {new DiscDataManage(phusbandDISC)?.getTypes()?.attitude ?? ""}
+                  {new DiscDataManage(pwifeDISC)?.getTypes()?.attitude ?? ""}
                 </Box>
               </Typography>
             </Box>
@@ -2282,6 +2282,7 @@ class CoupleResult extends Component {
               husband[index] == index2 + 1 ? (
                 pwife[index] == index2 + 1 ? (
                   <>
+                    {/* 중복 */}
                     <Box style={{ ...contentBox, ...colorC }}>
                       <Typography variant="h7">
                         <Box
@@ -2298,6 +2299,7 @@ class CoupleResult extends Component {
                   </>
                 ) : (
                   <>
+                  {/* 내가 체크한 나 */}
                     <Box style={{ ...contentBox, ...colorA }}>
                       <Typography variant="h7">
                         <Box
@@ -2315,6 +2317,7 @@ class CoupleResult extends Component {
                 )
               ) : pwife[index] == index2 + 1 ? (
                 <>
+                {/* 배우자가 체크한 나 */}
                   <Box style={{ ...contentBox, ...colorB }}>
                     <Typography variant="h7">
                       <Box
@@ -2331,6 +2334,7 @@ class CoupleResult extends Component {
                 </>
               ) : (
                 <>
+                {/* 일반 */}
                   <Box style={contentBox}>
                     <Typography variant="h7">
                       <Box
@@ -2438,7 +2442,7 @@ class CoupleResult extends Component {
                 wife[index] == index2 + 1 ? (
                   <>
                     <Box style={{ ...contentBox, ...colorC }}>
-                      <Typography variant="h7">
+                      <Typography variant="h7"> 
                         <Box
                           style={{
                             fontSize: "0.6em",
