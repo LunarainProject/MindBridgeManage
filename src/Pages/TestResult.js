@@ -6,6 +6,7 @@ import '../css/default.css';
 import testJson from '../survey/test.json';
 import discJson from '../survey/disc.json';
 import CoupleResult from '../Components/CoupleResult';
+import ResultRouter from './ResultPages/ResultRouter';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", padding: "0"};
@@ -78,6 +79,8 @@ class TestResult extends Component {
          this.setState({
              content: testJson,
          })
+
+         console.log('route');
     }
 
     render(){
@@ -88,19 +91,12 @@ class TestResult extends Component {
                         <CoupleResult result={this.state.result} content={this.state.content} 
                         partnerCount={this.props.match.params.partnerCount} user_srl={this.state.user_srl} ></CoupleResult>
                     ):(
-                    Object.values(this.state.result).map((value, index) => (
-                        <Box style={{display: "flex", flexDirection: "column", marginBottom: "30px"}}>
-                            <Typography>
-                                page : {value.page_number}
-                            </Typography>
-                            <Typography>
-                                problem : {value.problem_number}
-                            </Typography>
-                            <Typography>
-                                answer : {value.answer}
-                            </Typography>
-                        </Box>
-                    )))
+                    <ResultRouter
+                        pkgId={this.state.pkg_id}
+                        content={this.state.content}
+                        result={Object.values(this.state.result)}
+                    ></ResultRouter>
+                    )
                 }
             </Box>
         );
