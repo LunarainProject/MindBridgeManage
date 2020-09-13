@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Box, Container, Typography, Card, TextField,FormControl  } from '@material-ui/core';
+import { Button, Box, Container, Typography, Card, TextField,FormControl, Checkbox  } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/default.css';
@@ -31,11 +31,11 @@ class AddPkg extends Component {
             fileUpload: null,
             imgUpload: null,
             InfoLabel: "8+6문항",
-            
             pkgTitle: "설명 페이지에 들어갈 패키지의 제목을 입력해주세요.",
             questionNumber: "설명 페이지에 들어갈 문항 개수를 입력해주세요. ex) 40",
             checkContent: "설명 페이지에 들어갈 테스트의 설명을 입력해주세요.",
             resultAndAnalysis: ["1번"],
+            coupleCheck: false,
         };
     }
 
@@ -59,7 +59,8 @@ class AddPkg extends Component {
                         pkgTitle: this.state.pkgTitle,
                         questionNumber: this.state.questionNumber,
                         checkContent: this.state.checkContent,
-                        resultAndAnalysis: this.state.resultAndAnalysis
+                        resultAndAnalysis: this.state.resultAndAnalysis,
+                        coupleCheck: this.state.coupleCheck,
                     },
                     header:{
                     'Access-Control-Allow-Origin' : '*',
@@ -134,6 +135,11 @@ class AddPkg extends Component {
         });
     }
 
+    getCoupleCheckbox = (e) => {
+        this.setState({
+            coupleCheck: e.target.checked
+        })
+    }
     
     getInfoResultAndAnalysis = (e, index) => {
         let newArray = new Array();
@@ -262,6 +268,16 @@ class AddPkg extends Component {
                                             <span>{this.state.ImgText}</span>
                                         </label>
                                     </Box>
+                                </Box>
+                            </Box>
+                            <Box style={{...fullStyle, height: "60px", display: "flex", flexDirection: "row", alignItems: "center" }}>
+                                <Box>
+                                    <Typography variant="h6" >
+                                        커플용 패키지라면 체크해주세요.
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Checkbox checked={this.state.coupleCheck} onClick={this.getCoupleCheckbox} />
                                 </Box>
                             </Box>
 

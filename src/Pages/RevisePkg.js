@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Box, Container, Typography, Card, TextField, FormControl } from '@material-ui/core';
+import { Button, Box, Container, Typography, Card, TextField, FormControl, Checkbox } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/default.css';
@@ -39,6 +39,7 @@ class RevisePkg extends Component {
             questionNumber: "설명 페이지에 들어갈 문항 개수를 입력해주세요. ex) 40",
             checkContent: "설명 페이지에 들어갈 테스트의 설명을 입력해주세요.",
             resultAndAnalysis: ["1번"],
+            coupleCheck: new Boolean(),
         };
     }
 
@@ -64,6 +65,7 @@ class RevisePkg extends Component {
                         checkContent: this.state.checkContent,
                         resultAndAnalysis: this.state.resultAndAnalysis,
                         count: this.props.match.params.srl,
+                        coupleCheck: this.state.coupleCheck,
                     },
                     header: {
                         'Access-Control-Allow-Origin': '*',
@@ -94,6 +96,12 @@ class RevisePkg extends Component {
             alert("입력하지 않은 값이 있습니다.\n입력을 확인해주세요.");
         }
     }
+    getCoupleCheckbox = (e) => {
+        this.setState({
+            coupleCheck: e.target.checked
+        })
+    }
+    
 
     componentDidMount() {
         axios({
@@ -117,6 +125,7 @@ class RevisePkg extends Component {
                     questionNumber: responseJson.StartInfo.questionNumber,
                     checkContent: responseJson.StartInfo.checkContent,
                     resultAndAnalysis: responseJson.StartInfo.resultAndAnalysis,
+                    coupleCheck: Boolean(responseJson.couple),
                 });
                 console.log("responseJson : " + responseJson);
             })
@@ -244,7 +253,7 @@ class RevisePkg extends Component {
                             <TextField value={this.state.checkContent} id="checkContent" label="설명 페이지에 들어갈 테스트의 설명을 입력해주세요." style={TextFieldStyle} onChange={this.getInfoCheckContent}></TextField>
 
                             {
-                                this.state.resultAndAnalysis.map((val, index) => (
+                                this.state.resultAndAnalysis?.map((val, index) => (
                                     <TextField value={this.state.resultAndAnalysis[index]} label={`${index + 1}번`} style={TextFieldStyle} onChange={(e) => { this.getInfoResultAndAnalysis(e, index) }}></TextField>
                                 ))
                             }
@@ -297,6 +306,16 @@ class RevisePkg extends Component {
                                             <span>{this.state.ImgText}</span>
                                         </label>
                                     </Box>
+                                </Box>
+                            </Box>
+                            <Box style={{...fullStyle, height: "60px", display: "flex", flexDirection: "row", alignItems: "center" }}>
+                                <Box>
+                                    <Typography variant="h6" >
+                                        커플용 패키지라면 체크해주세요.
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Checkbox checked={this.state.coupleCheck} onClick={this.getCoupleCheckbox} />
                                 </Box>
                             </Box>
 
