@@ -7,6 +7,10 @@ export default class MarryDiagnosis extends React.Component<Props> {
     super(props);
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
     <div style={{width: "100%", fontSize: "11px"}}>
@@ -23,7 +27,16 @@ export default class MarryDiagnosis extends React.Component<Props> {
         행복도 그래프
       </Typography>
 
-      <table className="md-happy-table">
+      <div style={{width: "100%", position: 'relative'}}>
+        <div className="bar-chart">
+          <div className="self-bar-cont">
+            <div style={{height: "50%"}}></div>
+          </div>
+          <div className="spouse-bar-cont">
+            <div style={{height: "70%"}}></div>
+          </div>
+        </div>
+        <table className="md-happy-table">
         <tbody>
           <tr>
             <td>121~145점</td><td>매우 행복</td><td></td><td></td>
@@ -48,6 +61,8 @@ export default class MarryDiagnosis extends React.Component<Props> {
           </tr>
         </tbody>
       </table>
+      </div>
+      
       
       <Typography variant="subtitle1">
         분석
@@ -94,4 +109,5 @@ type Props = {
     }[];
   };
   result: res[];
+  spouseResult: res[];
 };
