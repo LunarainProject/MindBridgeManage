@@ -9,11 +9,16 @@ import {
   CardActionArea,
 } from "@material-ui/core";
 import { random } from "math";
-import MarryDiagnosis from "./MarryDiagnosis";
+import MarryDiagnosis from "./MarryDiagnosis/MarryDiagnosis";
 
 export default class ResultRouter extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      result: [],
+      spouseResult: [],
+    }
 
     this.result = [];
     this.spouseResult = [];
@@ -23,8 +28,8 @@ export default class ResultRouter extends React.Component {
     console.log('initial state: ', this.props.result);
     /*test result data*/
     if ((this.props.result || []).length == 0) {
-      for (var i = 1; i < 10; i++) {
-        for (var j = 1; j <= 2; j++) {
+      for (var i = 1; i < 15; i++) {
+        for (var j = 1; j <= 1; j++) {
           this.result.push({
             page_number: i,
             problem_number: j,
@@ -34,7 +39,7 @@ export default class ResultRouter extends React.Component {
       }
       console.log(this.result);
     } else {
-      this.result = this.props.result;
+      this.result = Object.values(this.props.result);
     }
 
     /*test spouse data*/
@@ -72,8 +77,8 @@ export default class ResultRouter extends React.Component {
 
       /* test data */
       if ((spouse || []).length == 0) {
-        for (var i = 1; i < 10; i++) {
-          for (var j = 1; j <= 2; j++) {
+        for (var i = 1; i < 15; i++) {
+          for (var j = 1; j <= 1; j++) {
             this.spouseResult.push({
               page_number: i,
               problem_number: j,
@@ -82,12 +87,18 @@ export default class ResultRouter extends React.Component {
           }
         }
       } else {
-        this.spouseResult = spouse;
+        this.spouseResult = spouse.map(val => ({
+          page_number: parseInt(val.page_number),
+          problem_number: parseInt(val.problem_number),
+          answer: parseInt(val.answer)
+        }));
       }
     }
 
-
-
+    this.setState({
+      result: this.result,
+      spouseResult: this.spouseResult,
+    })
     console.log(this.props.pkgId, this.result, this.spouseResult)
   }
 
@@ -100,8 +111,8 @@ export default class ResultRouter extends React.Component {
             <MarryDiagnosis
                 pkgId={this.props.pkgId}
                 content={this.props.content}
-                result={Object.values(this.result)}
-                spouseResult={this.spouseResult}
+                result={this.state.result}
+                spouseResult={this.state.spouseResult}
             ></MarryDiagnosis>
           ) 
 
@@ -110,7 +121,7 @@ export default class ResultRouter extends React.Component {
       default:
         return (
           <div>
-            {this.result.map((value) => (
+            {this.state.result.map((value) => (
               <Box
                 style={{
                   display: "flex",
