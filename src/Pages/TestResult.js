@@ -95,6 +95,8 @@ class TestResult extends Component {
                         pkgId={this.state.pkg_id}
                         content={this.state.content}
                         result={Object.values(this.state.result)}
+                        partnerCount={this.props.match.params.partnerCount}
+                        user_srl={this.state.user_srl}
                     ></ResultRouter>
                     )
                 }
