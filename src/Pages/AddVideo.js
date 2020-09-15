@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", 
@@ -38,7 +39,7 @@ class AddVideo extends Component {
             || (this.state.ImgMessage).includes(".PNG"))){
                 axios({
                     method: 'post',
-                    url: 'http://gfs3456.cafe24.com/api/PushVideo.php',
+                    url: envGetUrl()+'/api/PushVideo.php',
                     params:{
                     title: this.state.Title,
                     subtitle: this.state.SubTitle,
@@ -57,7 +58,7 @@ class AddVideo extends Component {
                 }); 
                 const formData = new FormData();
                 formData.append('ImgFile', this.state.imgUpload);
-                axios.post("http://gfs3456.cafe24.com/api/PushVideoFile.php", formData).then(res => {
+                axios.post(envGetUrl()+"/api/PushVideoFile.php", formData).then(res => {
                     console.log("res : " + JSON.stringify(res));
                     alert("동영상 등록이 성공적으로 완료되었습니다.");
                 }).catch(err => {

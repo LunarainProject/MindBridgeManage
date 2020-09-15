@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import VideoCard from '../Components/VideoCard';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", padding: "0"};
@@ -43,7 +44,7 @@ class VideoManage extends Component {
         });
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/api/videolist.php',
+        url: envGetUrl()+'/api/videolist.php',
         header:{
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

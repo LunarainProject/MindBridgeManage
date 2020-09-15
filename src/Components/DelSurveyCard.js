@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/default.css';
 import testImg from '../img/test.png';
+import { envGetUrl } from '../env';
 
 const ContainerStyle = {width: "100%", height: "173px", background: "#ffffff", borderRadius: "10px", boxSizing: "border-box"
 ,display: "flex", flexDirection: "column", marginBottom: "20px"};
@@ -21,7 +22,7 @@ export class DelSurveyCard extends Component {
         if(window.confirm("PkgId : " + this.props.pkgId + "번\n패키지를 삭제하시겠습니까?")){
             axios({
                 method: 'post',
-                url: 'http://gfs3456.cafe24.com/api/testdel.php',
+                url: envGetUrl()+'/api/testdel.php',
                 params:{
                     pkgId: this.props.pkgId
                 },

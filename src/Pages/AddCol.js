@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", 
@@ -39,7 +40,7 @@ class AddPkg extends Component {
             || (this.state.ImgMessage).includes(".PNG"))){
                 axios({
                     method: 'post',
-                    url: 'http://gfs3456.cafe24.com/api/PushCol.php',
+                    url: envGetUrl()+'/api/PushCol.php',
                     params:{
                     Title: this.state.Title,
                     SubTitle: this.state.SubTitle,
@@ -58,7 +59,7 @@ class AddPkg extends Component {
                 const formData = new FormData();
                 formData.append('selectFile', this.state.fileUpload);
                 formData.append('ImgFile', this.state.imgUpload);
-                axios.post("http://gfs3456.cafe24.com/api/PushColFile.php", formData).then(res => {
+                axios.post(envGetUrl()+"/api/PushColFile.php", formData).then(res => {
                     console.log("res : " + JSON.stringify(res));
                     alert("칼럼 등록이 성공적으로 완료되었습니다.");
                 }).catch(err => {

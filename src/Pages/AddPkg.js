@@ -6,6 +6,7 @@ import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
 import { useHistory } from "react-router-dom";
+import { envGetUrl } from '../env';
 
 
 const BodyStyle = {width: "100%", height: "100% auto"};
@@ -50,7 +51,7 @@ class AddPkg extends Component {
             || (this.state.ImgMessage).includes(".PNG")) ){
                 axios({
                     method: 'post',
-                    url: 'http://gfs3456.cafe24.com/api/PushPkg.php',
+                    url: envGetUrl()+'/api/PushPkg.php',
                     params:{
                         Title: this.state.Title,
                         SubTitle: this.state.SubTitle,
@@ -76,7 +77,7 @@ class AddPkg extends Component {
                 const formData = new FormData();
                 formData.append('selectFile', this.state.fileUpload);
                 formData.append('ImgFile', this.state.imgUpload);
-                axios.post("http://gfs3456.cafe24.com/api/PushPkgFile.php", formData).then(res => {
+                axios.post(envGetUrl()+"/api/PushPkgFile.php", formData).then(res => {
                     console.log("res : " + JSON.stringify(res));
                     alert("테스트 등록이 성공적으로 완료되었습니다.");
                 }).catch(err => {
@@ -291,7 +292,7 @@ class AddPkg extends Component {
                     </Card>
                     
                     
-                    <a href="http://gfs3456.cafe24.com/editor/" target="_blank">
+                    <a href={`${envGetUrl()}/editor/`} target="_blank">
                         <SurveyCard Plus="true" Title="설문조사 파일 생성 (.survey)" SubTitle="설문조사 파일을 생성하려면 클릭하세요."></SurveyCard>
                     </a>
                 </Container>

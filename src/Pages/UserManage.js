@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import UserCard from '../Components/UserCard';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 
@@ -26,7 +27,7 @@ class UserManage extends Component {
     componentDidMount(){
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/api/userlist.php',
+        url: envGetUrl()+'/api/userlist.php',
         header:{
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

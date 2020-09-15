@@ -4,6 +4,7 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/default.css';
+import { envGetUrl } from '../env';
 
 const ContainerStyle = {width: "100%", height: "173px", background: "#ffffff", borderRadius: "10px", boxSizing: "border-box"
 ,display: "flex", flexDirection: "column", marginBottom: "20px"};
@@ -17,7 +18,7 @@ export class ColumnCard extends Component {
         if(window.confirm("ColumnSrl : " + this.props.ColumnSrl + "번\n" + this.props.Title + "을(를) 삭제하시겠습니까?")){
             axios({
                 method: 'post',
-                url: 'http://gfs3456.cafe24.com/api/columndel.php',
+                url: envGetUrl()+'/api/columndel.php',
                 params:{
                     ColumnSrl: this.props.ColumnSrl
                 },
@@ -44,7 +45,7 @@ export class ColumnCard extends Component {
                         <CardContent style={{display: "flex",flexDirection: "row", justifyContent: "space-between"}}>
                             <Box style={{display: "flex", flexDirection: "row"}}>  
                                 {(this.props.Plus != "true") &&(
-                                    <img src={"http://gfs3456.cafe24.com/colImg/"+this.props.ColumnSrl+".jpg"}  style={{width: "260px", height:"140px", marginRight: "20px"}}
+                                    <img src={envGetUrl()+"/colImg/"+this.props.ColumnSrl+".jpg"}  style={{width: "260px", height:"140px", marginRight: "20px"}}
                                     onClick={this.alertModify}
                                     />
                                 )}

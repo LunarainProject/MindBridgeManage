@@ -11,6 +11,7 @@ import NavigationBtn from '../Components/NavigationBtn.js';
 import testSurvey from "../survey/test.json";
 import '../css/default.css';
 import '../css/problem.css';
+import { envGetUrl } from '../env.js';
 
 
 class SurveyScreen extends React.Component {
@@ -101,7 +102,7 @@ class SurveyScreen extends React.Component {
     if (this.state.count == (this.state.contentObj.page_list.length - 1)) {
       axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
+        url: envGetUrl()+'/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
@@ -125,7 +126,7 @@ class SurveyScreen extends React.Component {
       this.setState({ count: this.state.count + 1 });
       axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
+        url: envGetUrl()+'/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
@@ -160,7 +161,7 @@ class SurveyScreen extends React.Component {
       }, 2000)
       axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
+        url: envGetUrl()+'/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
@@ -200,7 +201,7 @@ class SurveyScreen extends React.Component {
   GetDataInServer = () => {
     axios({
       method: 'post',
-      url: 'http://gfs3456.cafe24.com/connectedSheet/index.php',
+      url: envGetUrl()+'/connectedSheet/index.php',
       params: {
         pkg_id: this.state.pkgId
       },
@@ -233,7 +234,7 @@ class SurveyScreen extends React.Component {
   CountUp = () => {
     axios({
       method: 'post',
-      url: 'http://gfs3456.cafe24.com/connectedSheet/count.php',
+      url: envGetUrl()+'/connectedSheet/count.php',
       params: {
         pkg_id: this.state.pkgId,
         user_id: this.state.UserId,

@@ -14,6 +14,7 @@ import DiscDataManage from "../disc/disc";
 import { Table } from "material-ui";
 
 import "../css/couple-res.css";
+import { envGetUrl } from "../env";
 
 const BodyStyle = { width: "100%", height: "100% auto" };
 const ReactMarkDown = require("react-markdown");
@@ -47,7 +48,7 @@ class CoupleResult extends Component {
     window.addEventListener("resize", this.updateWindowDimensions);
     axios({
       method: "post",
-      url: "http://gfs3456.cafe24.com/api/partnerTestResult.php",
+      url: envGetUrl()+"/api/partnerTestResult.php",
       params: {
         access_token: this.props.user_srl,
         count: this.props.partnerCount,

@@ -7,6 +7,7 @@ import testJson from '../survey/test.json';
 import discJson from '../survey/disc.json';
 import CoupleResult from '../Components/CoupleResult';
 import ResultRouter from './ResultPages/ResultRouter';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", padding: "0"};
@@ -27,7 +28,7 @@ class TestResult extends Component {
     componentDidMount(){
         axios({
             method: 'post',
-            url: 'http://gfs3456.cafe24.com/api/testResult.php',
+            url: envGetUrl()+'/api/testResult.php',
             params:{
               access_token: this.state.user_srl,
               pkg_id: this.state.pkg_id,
@@ -52,7 +53,7 @@ class TestResult extends Component {
         }); 
         // axios({
         //   method: 'post',
-        //   url: 'http://gfs3456.cafe24.com/connectedSheet/index.php',
+        //   url: envGetUrl()+'/connectedSheet/index.php',
         //   params:{
         //     pkg_id: this.state.pkg_id,
         //   },

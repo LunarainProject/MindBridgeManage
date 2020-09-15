@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Box, Container, Typography, } from '@material-ui/core';
 import Iframe from 'react-iframe';
 import axios from 'axios';
+import { envGetUrl } from '../env';
 
 class StartPageSub extends Component {
 
@@ -14,7 +15,7 @@ class StartPageSub extends Component {
     GetDataInServer = () => {
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/pkgStart/index.php',
+        url: envGetUrl()+'/pkgStart/index.php',
         params:{
             pkg_srl: this.props.pkgSrl
         },

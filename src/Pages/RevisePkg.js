@@ -6,6 +6,7 @@ import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
 import { useHistory } from "react-router-dom";
+import { envGetUrl } from '../env';
 
 
 const BodyStyle = { width: "100%", height: "100% auto" };
@@ -54,7 +55,7 @@ class RevisePkg extends Component {
                 || (this.state.ImgMessage).includes(".PNG"))) {
                 axios({
                     method: 'post',
-                    url: 'http://gfs3456.cafe24.com/api/RevisePkg.php',
+                    url: envGetUrl()+'/api/RevisePkg.php',
                     params: {
                         Title: this.state.Title,
                         SubTitle: this.state.SubTitle,
@@ -81,7 +82,7 @@ class RevisePkg extends Component {
                 const formData = new FormData();
                 formData.append('selectFile', this.state.fileUpload);
                 formData.append('ImgFile', this.state.imgUpload);
-                axios.post("http://gfs3456.cafe24.com/api/RevisePkgFile.php?count=" + this.props.match.params.srl, formData).then(res => {
+                axios.post(envGetUrl()+"/api/RevisePkgFile.php?count=" + this.props.match.params.srl, formData).then(res => {
                     console.log("res : " + JSON.stringify(res));
                     alert("테스트 수정이 성공적으로 완료되었습니다.");
                 }).catch(err => {
@@ -106,7 +107,7 @@ class RevisePkg extends Component {
     componentDidMount() {
         axios({
             method: 'post',
-            url: 'http://gfs3456.cafe24.com/api/PkgData.php',
+            url: envGetUrl()+'/api/PkgData.php',
             params: {
                 pkg_id: this.props.match.params.srl,
             },
@@ -329,7 +330,7 @@ class RevisePkg extends Component {
                     </Card>
 
 
-                    <a href="http://gfs3456.cafe24.com/editor/" target="_blank">
+                    <a href={envGetUrl()+"/editor/"} target="_blank">
                         <SurveyCard Plus="true" Title="설문조사 파일 생성 (.survey)" SubTitle="설문조사 파일을 생성하려면 클릭하세요."></SurveyCard>
                     </a>
                 </Container>

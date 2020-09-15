@@ -6,6 +6,7 @@ import '../css/default.css';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import UserCard from '../Components/UserCard';
 import CoupleCard from '../Components/CoupleCard';
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 
@@ -27,7 +28,7 @@ class CoupleManage extends Component {
     componentDidMount(){
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/api/couplelist.php',
+        url: envGetUrl()+'/api/couplelist.php',
         header:{
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

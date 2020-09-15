@@ -3,6 +3,7 @@ import { Button, Box, Container, Typography, } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Iframe from 'react-iframe';
+import { envGetUrl } from '../env';
 
 const ReactMarkDown = require('react-markdown');
 
@@ -20,7 +21,7 @@ class ColumnScreen extends Component {
     GetDataInServer = () => {
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/col/index.php',
+        url: envGetUrl()+'/col/index.php',
         params:{
         column_srl: this.props.match.params.columnSrl
         },

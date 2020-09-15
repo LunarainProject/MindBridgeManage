@@ -6,6 +6,7 @@ import Iframe from 'react-iframe';
 import mdTest from '../md/1.md'
 import StartPageMain from "../Components/StartPageMain";
 import StartPageSub from "../Components/StartPageSub";
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const ReactMarkDown = require('react-markdown');
@@ -20,7 +21,7 @@ class UserManage extends Component {
     GetDataInServer = () => {
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/pkg/index.php',
+        url: envGetUrl()+'/pkg/index.php',
         params:{
         pkg_srl: this.props.match.params.pkgSrl
         },

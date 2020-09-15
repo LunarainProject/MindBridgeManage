@@ -6,6 +6,7 @@ import '../css/default.css';
 import DelSurveyCard from '../Components/DelSurveyCard';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import MainCard from "../Components/MainCard";
+import { envGetUrl } from '../env';
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", 
@@ -33,7 +34,7 @@ class ModifyPkg extends Component {
     GetDataInServer = () => {
         axios({
         method: 'post',
-        url: 'http://gfs3456.cafe24.com/pkg/index.php',
+        url: envGetUrl()+'/pkg/index.php',
         params:{
         pkg_srl: this.props.match.params.srl
         },
@@ -56,7 +57,7 @@ class ModifyPkg extends Component {
         this.GetDataInServer();
         axios({
             method: 'post',
-            url: 'http://gfs3456.cafe24.com/api/testdescription.php',
+            url: envGetUrl()+'/api/testdescription.php',
             params:{
               srl: this.state.srl
             },
@@ -95,7 +96,7 @@ class ModifyPkg extends Component {
                 <Container style={InnerContainerStyle}>
                     <Card style={ContainerStyle} variant="outlined">
                         <Box style={ImgBox}>
-                            <img src={"http://gfs3456.cafe24.com/pkgImg/"+this.state.srl+".jpg"}  style={{width: "100%"}}/>
+                            <img src={envGetUrl()+"/pkgImg/"+this.state.srl+".jpg"}  style={{width: "100%"}}/>
                         </Box>
                         <Box style={InfoBox}>
                             <Typography variant="h4">
