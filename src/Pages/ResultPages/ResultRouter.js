@@ -26,42 +26,25 @@ export default class ResultRouter extends React.Component {
 
   async componentDidMount() {
     console.log('initial state: ', this.props.result);
-    /*test result data*/
-    if ((this.props.result || []).length == 0) {
-      for (var i = 1; i < 15; i++) {
-        for (var j = 1; j <= 1; j++) {
-          this.result.push({
-            page_number: i,
-            problem_number: j,
-            answer: (random() * 4 + 1).toFixed(0),
-          });
-        }
-      }
-      console.log(this.result);
-    } else {
-      this.result = Object.values(this.props.result);
-    }
 
-    /*test spouse data*/
+    //result
+    this.result = Object.values(this.props.result);
+
+    //spouse result - check if coupled survey
     let response;
-    let couple = false;
     try {
       response = await fetch(`http://gfs3456.cafe24.com/api/CheckCouple.php?pkg_id=${this.props.pkgId}`);
     } catch (e) {
       console.log('fetch error: ', e);
-
-      couple = true;
     }
-
     let responseJson;
     try {
       responseJson = await response?.json() ?? {};
     } catch(e) {
       console.log('json parse error: ', e);
     }
-
     // coupled survey 일 경우
-    if(responseJson?.couple == 'true' || couple) {
+    if(responseJson?.couple == 'true') {
       let response;
       let spouse = [];
       try {
@@ -75,26 +58,14 @@ export default class ResultRouter extends React.Component {
         console.log('json parse error', e);
       }
 
-      /* test data */
-      if ((spouse || []).length == 0) {
-        for (var i = 1; i < 15; i++) {
-          for (var j = 1; j <= 1; j++) {
-            this.spouseResult.push({
-              page_number: i,
-              problem_number: j,
-              answer: (random() * 4 + 1).toFixed(0),
-            });
-          }
-        }
-      } else {
-        this.spouseResult = spouse.map(val => ({
-          page_number: parseInt(val.page_number),
-          problem_number: parseInt(val.problem_number),
-          answer: parseInt(val.answer)
-        }));
-      }
+      this.spouseResult = spouse.map(val => ({
+        page_number: parseInt(val.page_number),
+        problem_number: parseInt(val.problem_number),
+        answer: parseInt(val.answer)
+      }));
     }
 
+    //result, spouseResult to state
     this.setState({
       result: this.result,
       spouseResult: this.spouseResult,
@@ -109,10 +80,10 @@ export default class ResultRouter extends React.Component {
       case '50':
           return (
             <MarryDiagnosis
-                pkgId={this.props.pkgId}
-                content={this.props.content}
-                result={this.state.result}
-                spouseResult={this.state.spouseResult}
+              pkgId={this.props.pkgId}
+              content={this.props.content}
+              result={this.state.result}
+              spouseResult={this.state.spouseResult}
             ></MarryDiagnosis>
           ) 
 
