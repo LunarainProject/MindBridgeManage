@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { random } from "math";
 import MarryDiagnosis from "./MarryDiagnosis/MarryDiagnosis";
+import { envGetUrl } from "../../env";
 
 export default class ResultRouter extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class ResultRouter extends React.Component {
     //spouse result - check if coupled survey
     let response;
     try {
-      response = await fetch(`http://gfs3456.cafe24.com/api/CheckCouple.php?pkg_id=${this.props.pkgId}`);
+      response = await fetch(`${envGetUrl()}/api/CheckCouple.php?pkg_id=${this.props.pkgId}`);
     } catch (e) {
       console.log('fetch error: ', e);
     }
@@ -48,7 +49,7 @@ export default class ResultRouter extends React.Component {
       let response;
       let spouse = [];
       try {
-        response = await fetch(`http://gfs3456.cafe24.com/api/partnerTestResult2.php?access_token=${this.props.user_srl}&pkg_id=${this.props.pkgId}&count=${this.props.partnerCount}`)
+        response = await fetch(`${envGetUrl()}/api/partnerTestResult2.php?access_token=${this.props.user_srl}&pkg_id=${this.props.pkgId}&count=${this.props.partnerCount}`)
       } catch(e) {
         console.log('fetch error: ', e);
       }
