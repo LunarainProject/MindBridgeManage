@@ -84,7 +84,7 @@ class TestResult extends Component {
             console.log('parse error');
         }
 
-        console.log('couple ****: ', coupleJson);
+        console.log('couple :', coupleJson);
     
         let spouseResult;
 
@@ -112,11 +112,11 @@ class TestResult extends Component {
                 answer: parseInt(val.answer)
             }));
 
-            console.log('spouseResult*******:', spouseResult);
+            console.log(spouseResult);
 
         }
 
-        console.log("contentJson*******:",contentJson);
+        console.log(contentJson);
 
         this.setState({
             result: Object.values(result).map(val => ({
