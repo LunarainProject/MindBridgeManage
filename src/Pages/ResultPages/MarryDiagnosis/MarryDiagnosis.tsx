@@ -53,10 +53,13 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     let result: res[] = [];
     let spouseResult: res[] = [];
     let content = props.content;
-    /*
+
+    console.log('props: ', props);
+
+    
     result = props.result;
     spouseResult = props.spouseResult;
-    */
+    
 
     /* test result */
     // {
@@ -94,15 +97,20 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     console.log(weight);
     const self = resultOnlyAnswer
       .map(
-        (choice: res, index: number) =>
-          (weight as weight)[index][choice.answer] ?? 0
+        (choice: res, index: number) => {
+          const row = (weight as weight)[index];
+          return row?.[choice.answer - 1] ?? 0
+        }
+          
       )
       .reduce((acc, cur) => acc + cur, 0);
 
     const spouse = spouseResultOnlyAnswer
       .map(
-        (choice: res, index: number) =>
-          (weight as weight)[index][choice.answer] ?? 0
+        (choice: res, index: number) => {
+          const row = (weight as weight)[index];
+          return row?.[choice.answer - 1] ?? 0
+        }
       )
       .reduce((acc, cur) => acc + cur, 0);
 
