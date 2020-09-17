@@ -15,63 +15,6 @@ import { envGetUrl } from "../../env";
 export default class ResultRouter extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      result: [],
-      spouseResult: [],
-    }
-
-    this.result = [];
-    this.spouseResult = [];
-  }
-
-  async componentDidMount() {
-    console.log('initial state: ', this.props.result);
-
-    //result
-    this.result = Object.values(this.props.result);
-
-    //spouse result - check if coupled survey
-    let response;
-    try {
-      response = await fetch(`${envGetUrl()}/api/CheckCouple.php?pkg_id=${this.props.pkgId}`);
-    } catch (e) {
-      console.log('fetch error: ', e);
-    }
-    let responseJson;
-    try {
-      responseJson = await response?.json() ?? {};
-    } catch(e) {
-      console.log('json parse error: ', e);
-    }
-    // coupled survey 일 경우
-    if(responseJson?.couple == 'true') {
-      let response;
-      let spouse = [];
-      try {
-        response = await fetch(`${envGetUrl()}/api/partnerTestResult2.php?access_token=${this.props.user_srl}&pkg_id=${this.props.pkgId}&count=${this.props.partnerCount}`)
-      } catch(e) {
-        console.log('fetch error: ', e);
-      }
-      try {
-        spouse = response?.json() ?? [];
-      } catch(e) {
-        console.log('json parse error', e);
-      }
-
-      this.spouseResult = spouse.map(val => ({
-        page_number: parseInt(val.page_number),
-        problem_number: parseInt(val.problem_number),
-        answer: parseInt(val.answer)
-      }));
-    }
-
-    //result, spouseResult to state
-    this.setState({
-      result: this.result,
-      spouseResult: this.spouseResult,
-    })
-    console.log(this.props.pkgId, this.result, this.spouseResult)
   }
 
   render() {
@@ -83,8 +26,8 @@ export default class ResultRouter extends React.Component {
             <MarryDiagnosis
               pkgId={this.props.pkgId}
               content={this.props.content}
-              result={this.state.result}
-              spouseResult={this.state.spouseResult}
+              result={this.props.result}
+              spouseResult={this.props.spouseResult}
             ></MarryDiagnosis>
           ) 
 
