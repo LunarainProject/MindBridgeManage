@@ -276,8 +276,8 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
           <li>
             자신과 배우자가 체크한 항목 중 2단계 이상의 차이가 있는 항목:
             <ul>
-              {this.state.greatDivergence.map((item) => (
-                <li>{item}</li>
+              {this.state.greatDivergence.map((item, index) => (
+                <li key={index}>{item}</li>
               ))}
             </ul>
           </li>
