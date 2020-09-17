@@ -57,8 +57,8 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     console.log('props: ', props);
 
     
-    result = props.result;
-    spouseResult = props.spouseResult;
+    result = props.result ?? [];
+    spouseResult = props.spouseResult ?? [];
     
 
     /* test result */
