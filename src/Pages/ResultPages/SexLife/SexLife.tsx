@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core";
 import * as React from "react";
-import "./marry-diagnosis.scss";
+import "./sex-life.scss";
 import weight from "./weight.json";
 
 type res = {
@@ -29,12 +29,12 @@ type State = {
   spouseTotal: number;
   selfPercent: number;
   spousePercent: number;
-  selfStatus: string;
-  spouseStatus: string;
+  selfStatus: string[];
+  spouseStatus: string[];
   greatDivergence: string[];
 };
 
-export default class MarryDiagnosis extends React.Component<Props, State> {
+export default class SexLife extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -43,8 +43,8 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
       spouseTotal: 0,
       selfPercent: 0,
       spousePercent: 0,
-      selfStatus: "",
-      spouseStatus: "",
+      selfStatus: ["", ""],
+      spouseStatus: ["", ""],
       greatDivergence: [],
     };
   }
@@ -117,11 +117,11 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     const percentage = (score: number): number => {
       const correspond = [
         [0, 0],
-        [20, 20],
+        [40, 20],
         [50, 40],
-        [80, 60],
-        [120, 80],
-        [145, 100],
+        [60, 60],
+        [70, 80],
+        [75, 100],
       ];
       for (let i = 0; i < correspond.length - 1; i++) {
         const left = correspond[i][0];
@@ -136,18 +136,18 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
       return 0;
     };
 
-    const status = (score: number): string => {
+    const status = (score: number): string[] => {
       type entry = {
         begin: number;
         end: number;
-        desc: string;
+        desc: string[];
       };
       const table: entry[] = [
-        { begin: 0, end: 20, desc: "매우 불행" },
-        { begin: 21, end: 50, desc: "불행" },
-        { begin: 51, end: 80, desc: "보통" },
-        { begin: 81, end: 120, desc: "행복" },
-        { begin: 121, end: 145, desc: "매우 행복" },
+        { begin: 0, end: 39, desc: ["갈등 많음", "전문가의 도움이 필요"]  },
+        { begin: 40, end: 49, desc: ["갈등 많음", "갈등 요소를 해결하는 노력이 필요"] },
+        { begin: 50, end: 59, desc: ["좀 더 노력", "조금 더 노력하면 만족도를 높일 가능성이 충분"] },
+        { begin: 60, end: 69, desc: ["만족", "즐기려 으쌰 하시는 그대들은 챔피언이라 판단"] },
+        { begin: 70, end: 75, desc: ["매우 만족", "아름다운 성을 아는 멋쟁이라 판단"]},
       ];
 
       for (let i = 0; i < table.length; i++) {
@@ -156,7 +156,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
         }
       }
 
-      return "";
+      return ["", ""];
     };
 
     const diff: number[] = [];
@@ -198,11 +198,11 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
             marginBottom: "20px",
           }}
         >
-          결혼진단 테스트 결과
+          부부 성생활 테스트 결과
         </Typography>
 
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-          <Typography variant="subtitle1">행복도 그래프</Typography>
+          <Typography variant="subtitle1">성 만족도 그래프</Typography>
         </div>
         <div style={{ width: "100%", position: "relative" }}>
           <div className="bar-chart">
@@ -216,38 +216,38 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
           <table className="md-happy-table">
             <tbody>
               <tr>
-                <td>121~145점</td>
-                <td>매우 행복</td>
+                <td>70~75점</td>
+                <td>매우 만족</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>81~120점</td>
-                <td>행복</td>
+                <td>60~69점</td>
+                <td>만족</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>51~80점</td>
-                <td>보통</td>
+                <td>50~59점</td>
+                <td>좀 더 노력</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>21~50점</td>
-                <td>불행</td>
+                <td>40~49점</td>
+                <td>갈등 많음</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>20점 이하</td>
-                <td>매우 불행</td>
+                <td>39점 이하</td>
+                <td>갈등 많음</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>점수</td>
-                <td>행복도</td>
+                <td>만족도</td>
                 <td className="graph">자신</td>
                 <td className="graph">배우자</td>
               </tr>
@@ -260,18 +260,17 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
         </div>
 
         <p>
-          ☞ 테스트 결과 : 점수의 총합이 120점 이상이면 행복한 결혼, 그이하는
-          점수가 낮을수록 불행감이 크다는 뜻입니다.
+        ☞ 테스트 결과 : 최고 점수의 총합은 75점이며 체크한 점수의 총합이 70점 이상이면 성만족도가 매우 높은편이며, 그이하는 점수가 낮을수록 성만족도가 떨어진다는 뜻입니다.
         </p>
 
         <ul>
           <li>
-            자신이 평가한 점수는 ({this.state.selfTotal})점으로 결혼생활을 (
-            {this.state.selfStatus})으로 평가함.
+            자신이 평가한 점수는 ({this.state.selfTotal})점으로 성생활에 (
+            {this.state.selfStatus[0]})으로 평가되며 ({this.state.selfStatus[1]})합니다.
           </li>
           <li>
-            배우자가 평가한 점수는 ({this.state.spouseTotal})점으로 결혼생활의
-            행복도가 ({this.state.spouseStatus})으로 평가함.
+            배우자가 평가한 점수는 ({this.state.spouseTotal})점으로 성생활에 (
+            {this.state.spouseStatus[0]})으로 평가되며 ({this.state.spouseStatus[1]})합니다.
           </li>
           <li>
             자신과 배우자가 체크한 항목 중 2단계 이상의 차이가 있는 항목:

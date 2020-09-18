@@ -1,7 +1,8 @@
 import { Typography } from "@material-ui/core";
 import * as React from "react";
-import "./marry-diagnosis.scss";
-import weight from "./weight.json";
+import "./conversation.scss";
+import weightMale from "./weightMale.json";
+import weightFemale from "./weightFemale.json";
 
 type res = {
   page_number: number;
@@ -22,6 +23,7 @@ type Props = {
   };
   result: res[];
   spouseResult: res[];
+  gender: 'male' | 'female';
 };
 
 type State = {
@@ -31,10 +33,22 @@ type State = {
   spousePercent: number;
   selfStatus: string;
   spouseStatus: string;
-  greatDivergence: string[];
 };
 
-export default class MarryDiagnosis extends React.Component<Props, State> {
+type entry = {
+  begin: number;
+  end: number;
+  desc: string;
+};
+const table: entry[] = [
+  { begin: 0, end: 2, desc: "매우 개선 필요함" },
+  { begin: 3, end: 4, desc: "개선 필요함" },
+  { begin: 5, end: 6, desc: "노력 필요함" },
+  { begin: 7, end: 8, desc: "잘함" },
+  { begin: 9, end: 11, desc: "매우 잘함" },
+];
+
+export default class Conversation extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -45,7 +59,6 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
       spousePercent: 0,
       selfStatus: "",
       spouseStatus: "",
-      greatDivergence: [],
     };
   }
 
@@ -63,21 +76,21 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
 
     /* test result */
     // {
-    //   for (var i = 1; i <= 15; i++) {
-    //     for (var j = 1; j <= 2; j++) {
+    //   for (var i = 1; i <= 11; i++) {
+    //     for (var j = 1; j <= 1; j++) {
     //       result.push({
     //         page_number: i,
     //         problem_number: j,
-    //         answer: Math.round(Math.random() * 4 + 1),
+    //         answer: Math.round(Math.random() + 1),
     //       });
     //     }
     //   }
-    //   for (var i = 1; i <= 15; i++) {
+    //   for (var i = 1; i <= 10; i++) {
     //     for (var j = 1; j <= 2; j++) {
     //       spouseResult.push({
     //         page_number: i,
     //         problem_number: j,
-    //         answer: Math.round(Math.random() * 4 + 1),
+    //         answer: Math.round(Math.random() + 1),
     //       });
     //     }
     //   }
@@ -94,11 +107,11 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     );
 
     type weight = number[][];
-    console.log(weight);
+
     const self = resultOnlyAnswer
       .map(
         (choice: res, index: number) => {
-          const row = (weight as weight)[index];
+          const row = ((props.gender == 'male' ? weightMale : weightFemale) as weight)[index];
           return row?.[choice.answer - 1] ?? 0
         }
           
@@ -108,7 +121,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     const spouse = spouseResultOnlyAnswer
       .map(
         (choice: res, index: number) => {
-          const row = (weight as weight)[index];
+          const row = ((props.gender == 'male' ? weightFemale : weightMale) as weight)[index];
           return row?.[choice.answer - 1] ?? 0
         }
       )
@@ -117,11 +130,11 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     const percentage = (score: number): number => {
       const correspond = [
         [0, 0],
-        [20, 20],
-        [50, 40],
-        [80, 60],
-        [120, 80],
-        [145, 100],
+        [3, 20],
+        [5, 40],
+        [7, 60],
+        [9, 80],
+        [11, 100],
       ];
       for (let i = 0; i < correspond.length - 1; i++) {
         const left = correspond[i][0];
@@ -137,19 +150,6 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
     };
 
     const status = (score: number): string => {
-      type entry = {
-        begin: number;
-        end: number;
-        desc: string;
-      };
-      const table: entry[] = [
-        { begin: 0, end: 20, desc: "매우 불행" },
-        { begin: 21, end: 50, desc: "불행" },
-        { begin: 51, end: 80, desc: "보통" },
-        { begin: 81, end: 120, desc: "행복" },
-        { begin: 121, end: 145, desc: "매우 행복" },
-      ];
-
       for (let i = 0; i < table.length; i++) {
         if (table[i].begin <= score && score <= table[i].end) {
           return table[i].desc;
@@ -159,23 +159,6 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
       return "";
     };
 
-    const diff: number[] = [];
-    for (let i = 0; i < resultOnlyAnswer.length; i++) {
-      diff.push(
-        Math.abs(resultOnlyAnswer[i].answer - spouseResultOnlyAnswer[i].answer)
-      );
-    }
-
-    console.log("DIFF: ", diff);
-    console.log(content);
-
-    const greatDivergence = diff
-      .map((num, index) => ({ num, index }))
-      .filter(({ num }) => num >= 2)
-      .map(({ index }) => index)
-      .map((index) => content.page_list[index].question_list[0].question_title);
-    console.log(greatDivergence);
-
     return {
       selfTotal: self,
       spouseTotal: spouse,
@@ -183,7 +166,6 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
       spousePercent: percentage(spouse),
       selfStatus: status(self),
       spouseStatus: status(spouse),
-      greatDivergence: greatDivergence,
     };
   }
 
@@ -198,7 +180,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
             marginBottom: "20px",
           }}
         >
-          결혼진단 테스트 결과
+          부부 대화 테스트 결과
         </Typography>
 
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>
@@ -215,36 +197,14 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
           </div>
           <table className="md-happy-table">
             <tbody>
-              <tr>
-                <td>121~145점</td>
-                <td>매우 행복</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>81~120점</td>
-                <td>행복</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>51~80점</td>
-                <td>보통</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>21~50점</td>
-                <td>불행</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>20점 이하</td>
-                <td>매우 불행</td>
-                <td></td>
-                <td></td>
-              </tr>
+              {table.slice().reverse().map((val, index) => (
+                <tr key={index}>
+                  <td>{val.begin}~{val.end}점</td>
+                  <td>{val.desc}</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ))}
               <tr>
                 <td>점수</td>
                 <td>행복도</td>
@@ -258,11 +218,24 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Typography variant="subtitle1">분석</Typography>
         </div>
-
-        <p>
-          ☞ 테스트 결과 : 점수의 총합이 120점 이상이면 행복한 결혼, 그이하는
-          점수가 낮을수록 불행감이 크다는 뜻입니다.
+{/* 
+        {this.props.gender == 'male' ?
+        (
+          <p>
+          ☞ 10점이상 점수를 획득했다면 최고의 남편이라고 할 수 있다. 
+             남편으로서 이 중에서 몇 가지만이라도 해당되는 것이 있다면 그것만으로도 아내와 바람직한 대화를 나누고 있다고 생각해도 좋다. 안타깝게 어디에도 해당되지 않는다면 
+             10개 항목 중에서 무엇이라도 좋으니 바로 할 수 있다고 생각하는 것부터 실천해보라. 
+             조금 용기를 내는 것만으로도 아내의 얼굴이 더 밝아지고 더 부드럽게 말을 걸어온다는 사실을 실감할 수 있다. 
         </p>
+        ) : (
+          <p>
+          ☞ 부부간의 대화를 원활하게 하기 위해서는 남편이 조금이라도 말을 하기 편한 분위기를 만드는 아내의 노력이 필요하다.
+시집 식구에 대한 불평이나 결혼생활에 대한 불만을 듣게 될 것이 뻔하다고 생각된다면, 일찍 들어갈 수 있는 날에도 다른 데서 시간을 보내다 들어가려는 생각이 들 것이다. 
+이야기를 좀 더 나누고 싶다면 먼저 상대방의 마음을 이해해야 하는 것이 기본이다. 그리고 그것은 공감 능력이 뛰어난 여성이 더 많이 가지고 있는 특성이다. 
+여성이 가지고 있는 다정함과 배려는 돈으로 얻을 수 없는 가치가 있다. 
+        </p>
+        )}
+         */}
 
         <ul>
           <li>
@@ -273,21 +246,13 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
             배우자가 평가한 점수는 ({this.state.spouseTotal})점으로 결혼생활의
             행복도가 ({this.state.spouseStatus})으로 평가함.
           </li>
-          <li>
-            자신과 배우자가 체크한 항목 중 2단계 이상의 차이가 있는 항목:
-            <ul>
-              {this.state.greatDivergence.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </li>
         </ul>
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Typography variant="subtitle1">나눔</Typography>
         </div>
-        <p>* 함께 점수를 보고 상호 행복도에 대해 이야기를 나누어 보세요.</p>
+        <p>* 함께 점수를 보고 대화 충실도에 대해 이야기를 나누어 보세요.</p>
         <p>
-          * 자신과 배우자의 차이가 난 항목별로 분석하고 멋진 계획을 세워 보세요.
+          * 아내와 남편이 각각 체크한 항목별로 분석하고 대화 계획을 세워보세요.
         </p>
       </div>
     );
