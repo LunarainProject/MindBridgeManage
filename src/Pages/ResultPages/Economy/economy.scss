@@ -1,0 +1,69 @@
+$barWidth: 18px;
+$tableHeight: 40px;
+
+.eco-table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    tr {
+        height: $tableHeight;
+
+    }
+    tr:nth-child(2) {
+        td {
+            width: calc(80% / 3);
+        }
+    }
+
+    tr:not(:first-child):not(:last-child):not(:nth-child(2)) {
+        td:first-child, td:nth-child(2) {
+            width: 10%;
+        }
+    }
+
+    td {
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    .graph {
+        width: 30%;
+    }
+}
+
+.eco-bar-chart {
+
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 5 * $tableHeight;
+    left: 0;
+    top: 0;
+
+    .self-bar-cont {
+        position: absolute;
+        left: 20%;
+        height: $barWidth;
+        width: 80%;
+        bottom: $tableHeight * 2.5 - $barWidth / 2;
+
+        > div {
+            height: 100%;
+            background-color: #3366ff;
+        }
+    }
+
+    .spouse-bar-cont {
+        position: absolute;
+        left: 20%;
+        height: $barWidth;
+        width: 80%;
+        bottom: $tableHeight * 1.5 - $barWidth / 2;
+
+        > div {
+            height: 100%;
+            background-color: #ffdd1e;
+        }
+    }
+}
