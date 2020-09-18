@@ -1,5 +1,5 @@
 /* environment */
 
 export function envGetUrl() {
-    return "";
+    return "http://localhost";
 }
