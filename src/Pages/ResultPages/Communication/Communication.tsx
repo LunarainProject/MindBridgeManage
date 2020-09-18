@@ -106,33 +106,33 @@ export default class Communcation extends React.Component<Props, State> {
     console.log('props: ', props);
 
     
-    // result = props.result ?? [];
-    // spouseResult = props.spouseResult ?? [];
+    result = props.result ?? [];
+    spouseResult = props.spouseResult ?? [];
     
     /* test result */
-    {
-      for (var i = 1; i <= 21; i++) {
-        for (var j = 1; j <= 2; j++) {
-          result.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 4 + 1),
-          });
-        }
-      }
-      for (var i = 1; i <= 21; i++) {
-        for (var j = 1; j <= 2; j++) {
-          spouseResult.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 4 + 1),
-          });
-        }
-      }
-      content = JSON.parse(
-    `{"package_title":"부부 의사 소통 수준 검사","page_list":[{"page_title":"1/21","question_list":[{"question_title":"대화를 나눌 때 경청을 잘한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"2/21","question_list":[{"question_title":"상대방이 마음을 털어놓을 때 이해를 해준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"3/21","question_list":[{"question_title":"과장시키고 말을 많이 하는 편이다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"4/21","question_list":[{"question_title":"압축하고 말을 너무 적게 하는 편이다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"5/21","question_list":[{"question_title":"감정을 드러내지 않는 편이다.","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"6/21","question_list":[{"question_title":"비판적이거나 잔소리를 해댄다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"7/21","question_list":[{"question_title":"배우자를 격려한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"8/21","question_list":[{"question_title":"충돌이 생기면 그 자리를 피하곤 한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"9/21","question_list":[{"question_title":"상처를 숨기고 분노를 쌓아둔다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"10/21","question_list":[{"question_title":"중간에 끼어들지 않고 배우자의 말을  끝까지 들어준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"11/21","question_list":[{"question_title":"상대방이 화가 나 있을 때 오랜 시간 동안  말을 하지 않고 지낸다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"12/21","question_list":[{"question_title":"상대방이 화를 낼 것 같은 경우 다른 의견을  내세우는 것을 두려워한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"13/21","question_list":[{"question_title":"일어나는 일들에 대해 대부분의 경우  만족하며 감사를 표한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"14/21","question_list":[{"question_title":"상대방이 자신을 이해해주지 않는다고 불평한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"15/21","question_list":[{"question_title":"화를 내지 않으면서 의견을 달리하는 것이  가능하다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"16/21","question_list":[{"question_title":"대화를 일방적으로 끌고 가곤 한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"17/21","question_list":[{"question_title":"배우자와 성에 대해 자유롭게 대화를 나눈다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"18/21","question_list":[{"question_title":"배우자를 칭찬하며 듣기 좋은 말을 해준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"19/21","question_list":[{"question_title":"배우자로부터 오해받는 기분을 느낀다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"20/21","question_list":[{"question_title":"감정을 나누는 대화를 피하려는 경향이 있다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"21/21","question_list":[{"question_title":"문제가 되는 일들에 대한 대화를 피한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]}]}`
-    );
-    }
+    // {
+    //   for (var i = 1; i <= 21; i++) {
+    //     for (var j = 1; j <= 2; j++) {
+    //       result.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 4 + 1),
+    //       });
+    //     }
+    //   }
+    //   for (var i = 1; i <= 21; i++) {
+    //     for (var j = 1; j <= 2; j++) {
+    //       spouseResult.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 4 + 1),
+    //       });
+    //     }
+    //   }
+    //   content = JSON.parse(
+    // `{"package_title":"부부 의사 소통 수준 검사","page_list":[{"page_title":"1/21","question_list":[{"question_title":"대화를 나눌 때 경청을 잘한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"2/21","question_list":[{"question_title":"상대방이 마음을 털어놓을 때 이해를 해준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"3/21","question_list":[{"question_title":"과장시키고 말을 많이 하는 편이다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"4/21","question_list":[{"question_title":"압축하고 말을 너무 적게 하는 편이다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"5/21","question_list":[{"question_title":"감정을 드러내지 않는 편이다.","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"6/21","question_list":[{"question_title":"비판적이거나 잔소리를 해댄다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"7/21","question_list":[{"question_title":"배우자를 격려한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"8/21","question_list":[{"question_title":"충돌이 생기면 그 자리를 피하곤 한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"9/21","question_list":[{"question_title":"상처를 숨기고 분노를 쌓아둔다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"10/21","question_list":[{"question_title":"중간에 끼어들지 않고 배우자의 말을  끝까지 들어준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"11/21","question_list":[{"question_title":"상대방이 화가 나 있을 때 오랜 시간 동안  말을 하지 않고 지낸다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"12/21","question_list":[{"question_title":"상대방이 화를 낼 것 같은 경우 다른 의견을  내세우는 것을 두려워한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"13/21","question_list":[{"question_title":"일어나는 일들에 대해 대부분의 경우  만족하며 감사를 표한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"14/21","question_list":[{"question_title":"상대방이 자신을 이해해주지 않는다고 불평한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"15/21","question_list":[{"question_title":"화를 내지 않으면서 의견을 달리하는 것이  가능하다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"16/21","question_list":[{"question_title":"대화를 일방적으로 끌고 가곤 한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"17/21","question_list":[{"question_title":"배우자와 성에 대해 자유롭게 대화를 나눈다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"18/21","question_list":[{"question_title":"배우자를 칭찬하며 듣기 좋은 말을 해준다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"19/21","question_list":[{"question_title":"배우자로부터 오해받는 기분을 느낀다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"20/21","question_list":[{"question_title":"감정을 나누는 대화를 피하려는 경향이 있다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"21/21","question_list":[{"question_title":"문제가 되는 일들에 대한 대화를 피한다","type":1,"string_list":["항상그렇다","자주 그렇다","때때로 그렇다","드물게 그렇다","거의 그런일이 없다"],"couple_list":["자신","배우자"]}]}]}`
+    // );
+    // }
 
     console.log("result, spouseResult: ", result, spouseResult);
 

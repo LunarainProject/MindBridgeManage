@@ -70,34 +70,34 @@ export default class Conversation extends React.Component<Props, State> {
     console.log('props: ', props);
 
     
-    // result = props.result ?? [];
-    // spouseResult = props.spouseResult ?? [];
+    result = props.result ?? [];
+    spouseResult = props.spouseResult ?? [];
     
 
     /* test result */
-    {
-      for (var i = 1; i <= 11; i++) {
-        for (var j = 1; j <= 1; j++) {
-          result.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() + 1),
-          });
-        }
-      }
-      for (var i = 1; i <= 10; i++) {
-        for (var j = 1; j <= 2; j++) {
-          spouseResult.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() + 1),
-          });
-        }
-      }
-      content = JSON.parse(
-    `{"package_title":"결혼생활진단테스트","page_list":[{"page_title":"결혼생활진단테스트 1/16","question_list":[{"question_title":"결혼에 대해 당신이 느끼는 행복감은?","type":3,"string_list":["최고로 행복하다고 생각한다","행복한 편이라 생각한다","보통이다","불행한 편이라 생각한다","극심하게 불행하다고 생각한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 2/16","question_list":[{"question_title":"'돈쓰는 문제에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상 어긋난다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 3/16","question_list":[{"question_title":"'여가와 휴가에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상 어긋난다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 4/16","question_list":[{"question_title":"'애정 표시에 관해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 5/16","question_list":[{"question_title":"'친구나 주변사람에 관해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 6/16","question_list":[{"question_title":"'섹스에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 7/16","question_list":[{"question_title":"'가치관과 삶의 우선순위에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 8/16","question_list":[{"question_title":"'인생관(삶의철학)에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 9/16","question_list":[{"question_title":"'부모,형제, 친인척에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 10/16","question_list":[{"question_title":"서로 의견이 어긋날 때","type":3,"string_list":["남편이 진다","아내가 진다","서로 양보하여 타협안을 찾는다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 11/16","question_list":[{"question_title":"당신 부부는 취미나 여가를 함께 합니까?","type":3,"string_list":["모두 같이 한다","일부만 같이 한다","거의 같이 하는 게 없다","아무것도 같이 하지 않는다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 12/16","question_list":[{"question_title":"여가가 있을 때 당신은 대체로","type":3,"string_list":["어딘가 가거나 뭔가를 하려 한다","집에 있고 싶어한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 13/16","question_list":[{"question_title":"여가가 있을 때 당신의 배우자는 대체로","type":3,"string_list":["어딘가 가거나 뭔가를 하려 한다","집에 있고 싶어한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 14/16","question_list":[{"question_title":"차라리 독신으로 살았더라면 하는 생각이 든 적이 있습니까?","type":3,"string_list":["종종 그런 생각을 한다","가끔 그런 생각이 든다","별로 그런 생각을 한 적이 없다","한번도 그런 생각을 한 적이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 15/16","question_list":[{"question_title":"만일 다시 태어난다면","type":3,"string_list":["같은 배우자랑 결혼하겠다","다른 사람과 결혼하겠다","결혼을 절대 하지 않겠다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 16/16","question_list":[{"question_title":"배우자를 신뢰합니까?","type":3,"string_list":["거의 믿어본 적이 없다","아주 드물게 믿는다","대부분 믿는다","모든 것을 신뢰한다"],"couple_list":["자신","배우자"]}]}]}`
-    );
-    }
+    // {
+    //   for (var i = 1; i <= 11; i++) {
+    //     for (var j = 1; j <= 1; j++) {
+    //       result.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() + 1),
+    //       });
+    //     }
+    //   }
+    //   for (var i = 1; i <= 10; i++) {
+    //     for (var j = 1; j <= 2; j++) {
+    //       spouseResult.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() + 1),
+    //       });
+    //     }
+    //   }
+    //   content = JSON.parse(
+    // `{"package_title":"결혼생활진단테스트","page_list":[{"page_title":"결혼생활진단테스트 1/16","question_list":[{"question_title":"결혼에 대해 당신이 느끼는 행복감은?","type":3,"string_list":["최고로 행복하다고 생각한다","행복한 편이라 생각한다","보통이다","불행한 편이라 생각한다","극심하게 불행하다고 생각한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 2/16","question_list":[{"question_title":"'돈쓰는 문제에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상 어긋난다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 3/16","question_list":[{"question_title":"'여가와 휴가에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상 어긋난다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 4/16","question_list":[{"question_title":"'애정 표시에 관해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 5/16","question_list":[{"question_title":"'친구나 주변사람에 관해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 6/16","question_list":[{"question_title":"'섹스에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 7/16","question_list":[{"question_title":"'가치관과 삶의 우선순위에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 8/16","question_list":[{"question_title":"'인생관(삶의철학)에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 9/16","question_list":[{"question_title":"'부모,형제, 친인척에 대해' 배우자와 의견 일치가 얼마나 되는지?","type":3,"string_list":["항상 일치 한다","대부분 일치한다","가끔 일치하거나 어긋난다","대부분 어긋난다","항상어긋남"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 10/16","question_list":[{"question_title":"서로 의견이 어긋날 때","type":3,"string_list":["남편이 진다","아내가 진다","서로 양보하여 타협안을 찾는다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 11/16","question_list":[{"question_title":"당신 부부는 취미나 여가를 함께 합니까?","type":3,"string_list":["모두 같이 한다","일부만 같이 한다","거의 같이 하는 게 없다","아무것도 같이 하지 않는다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 12/16","question_list":[{"question_title":"여가가 있을 때 당신은 대체로","type":3,"string_list":["어딘가 가거나 뭔가를 하려 한다","집에 있고 싶어한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 13/16","question_list":[{"question_title":"여가가 있을 때 당신의 배우자는 대체로","type":3,"string_list":["어딘가 가거나 뭔가를 하려 한다","집에 있고 싶어한다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 14/16","question_list":[{"question_title":"차라리 독신으로 살았더라면 하는 생각이 든 적이 있습니까?","type":3,"string_list":["종종 그런 생각을 한다","가끔 그런 생각이 든다","별로 그런 생각을 한 적이 없다","한번도 그런 생각을 한 적이 없다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 15/16","question_list":[{"question_title":"만일 다시 태어난다면","type":3,"string_list":["같은 배우자랑 결혼하겠다","다른 사람과 결혼하겠다","결혼을 절대 하지 않겠다"],"couple_list":["자신","배우자"]}]},{"page_title":"결혼생활진단테스트 16/16","question_list":[{"question_title":"배우자를 신뢰합니까?","type":3,"string_list":["거의 믿어본 적이 없다","아주 드물게 믿는다","대부분 믿는다","모든 것을 신뢰한다"],"couple_list":["자신","배우자"]}]}]}`
+    // );
+    // }
 
     console.log("result, spouseResult: ", result, spouseResult);
 
