@@ -141,7 +141,7 @@ class TestResult extends Component {
                 {
                     (this.state.pkg_id == '27')?(
                         <CoupleResult result={this.state.result} content={this.state.content} 
-                        partnerCount={this.props.match.params.partnerCount} user_srl={this.state.user_srl} ></CoupleResult>
+                        partnerCount={this.props.match.params.partnerCount} user_srl={this.state.user_srl} count={this.state.count} ></CoupleResult>
                     ):(
                     <ResultRouter
                         pkgId={this.state.pkg_id}
