@@ -14,6 +14,10 @@ import { envGetUrl } from "../../env";
 import SexLife from "./SexLife/SexLife";
 import Communcation from "./Communication/Communication";
 import Conversation from "./Conversation/Conversation";
+import Affinity from "./Affinity/Affinity";
+import Respect from "./Respect/Respect";
+import Economy from "./Economy/Economy";
+import Question from "./Question/Question"
 
 export default class ResultRouter extends React.Component {
   constructor(props) {
@@ -76,6 +80,46 @@ export default class ResultRouter extends React.Component {
             gender="female"
           ></Conversation>
         );
+
+      case '62':
+        return (
+          <Affinity
+            pkgId={this.props.pkgId}
+            content={this.props.content}  
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+          ></Affinity>
+        )
+
+      case '63':
+        return (
+          <Respect
+            pkgId={this.props.pkgId}
+            content={this.props.content}  
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}            
+          ></Respect>
+        )
+
+      case '64':
+        return (
+          <Economy
+          pkgId={this.props.pkgId}
+          content={this.props.content}  
+          result={this.props.result}
+          spouseResult={this.props.spouseResult}  
+          ></Economy>
+        )
+
+      case '65':
+        return (
+          <Question
+          pkgId={this.props.pkgId}
+          content={this.props.content}  
+          result={this.props.result}
+          spouseResult={this.props.spouseResult}  
+          ></Question>
+        )
 
       case '27':
         return <div></div>;
