@@ -23,6 +23,8 @@ import contentJson from "../sample/content.json";
 import sampleResult1 from "../sample/1.json";
 import sampleResult2 from "../sample/2.json";
 
+import resultAnalysis from "../sample/27contents.json";
+
 const BodyStyle = { width: "100%", height: "100% auto" };
 const ReactMarkDown = require("react-markdown");
 
@@ -45,7 +47,7 @@ class CoupleResult extends Component {
   };
 
   onNextClick = () => {
-    if (this.state.page != 5) {
+    if (this.state.page != 4) {
       this.setState({
         page: this.state.page + 1,
       })
@@ -73,7 +75,33 @@ class CoupleResult extends Component {
     window.addEventListener("resize", this.updateWindowDimensions);
     axios({
       method: "post",
-      url: envGetUrl() + "/api/partnerTestResult.php",
+      url: 'http://gfs3456.cafe24.com/api/testResult.php',
+      params: {
+        access_token: this.props.user_srl,
+        pkg_id: 27,
+        count: this.props.count,
+      },
+      header: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+    })
+      .then((response) => response.data)
+      .then((responseJson) => {
+        console.log("responseJson : " + responseJson);
+        this.setState({
+          result: responseJson,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          result: sampleResult1,
+        });
+        console.log("testResultFailed : " + error);
+      });
+    axios({
+      method: "post",
+      url: "http://gfs3456.cafe24.com/api/partnerTestResult.php",
       params: {
         access_token: this.props.user_srl,
         count: this.props.partnerCount,
@@ -92,9 +120,9 @@ class CoupleResult extends Component {
       })
       .catch((error) => {
         this.setState({
-          partnerResult: sampleResult1,
+          partnerResult: sampleResult2,
         });
-        console.log("error : " + error);
+        console.log("partnerTestResultFailed : " + error);
       });
   }
 
@@ -120,9 +148,8 @@ class CoupleResult extends Component {
     const colorB = { background: "#D8F0C0" };
     const colorC = { background: "#FCFAD9" };
 
-    //const { content = sampleResult2, result = sampleResult2 } = this.props;
-
-    const content = contentJson, result = sampleResult2;
+    const content = contentJson;
+    let result = this.state.result;
 
     let husband = new Array(),
       wife = new Array(),
@@ -174,7 +201,11 @@ class CoupleResult extends Component {
     let myPreference = new Array(),
       partnerPreference = new Array();
     let myPreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 },
-      partnerPreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 };
+      myPositivePreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 },
+      myNegativePreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 },
+      partnerPreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 },
+      partnerPositivePreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 },
+      partnerNegativePreferenceNumber = { D: 0, I: 0, S: 0, C: 0, T: 0 };
 
     for (let i = 0; i < 40; i++) {
       for (let j = 0; j < 4; j++) {
@@ -188,17 +219,26 @@ class CoupleResult extends Component {
     }
 
     myPreference.map(
-      (val, index) => (myPreferenceNumber[val] += preference[index] - 3)
+      (val, index) =>
+        (myPreferenceNumber[val] += preference[index] - 3,
+          (preference[index] > 3) && (myPositivePreferenceNumber[val]++),
+          (preference[index] < 3) && (myNegativePreferenceNumber[val]++))
     );
 
+    console.log("myPositivePreferenceNumber", myPositivePreferenceNumber);
+
     partnerPreference.map(
-      (val, index) => (partnerPreferenceNumber[val] += ppreference[index] - 3)
+      (val, index) => (partnerPreferenceNumber[val] += ppreference[index] - 3,
+        (ppreference[index] > 3) && (partnerPositivePreferenceNumber[val]++),
+        (ppreference[index] < 3) && (partnerNegativePreferenceNumber[val]++))
     );
+
     myPreferenceNumber["T"] =
       myPreferenceNumber["D"] +
       myPreferenceNumber["I"] +
       myPreferenceNumber["S"] +
       myPreferenceNumber["C"];
+
     partnerPreferenceNumber["T"] =
       partnerPreferenceNumber["D"] +
       partnerPreferenceNumber["I"] +
@@ -1389,7 +1429,7 @@ class CoupleResult extends Component {
           </table>
         </Box>
 
-        <Box style={(this.state.page != 3) ? ({ display: "none" }) : ({ width: "100%" })}>
+        <Box style={(this.state.page != 2) ? ({ display: "none" }) : ({ width: "100%" })}>
           <Typography
             variant="h6"
             style={{ marginTop: "35px", marginBottom: "5px" }}
@@ -1550,7 +1590,7 @@ class CoupleResult extends Component {
           ))}
         </Box>
 
-        <Box style={(this.state.page != 4) ? ({ display: "none" }) : ({ width: "100%" })}>
+        <Box style={(this.state.page != 2) ? ({ display: "none" }) : ({ width: "100%" })}>
           <Typography
             variant="h6"
             style={{ marginTop: "35px", marginBottom: "5px" }}
@@ -1707,7 +1747,7 @@ class CoupleResult extends Component {
           ))}
         </Box>
 
-        <Box style={(this.state.page != 5) ? ({ display: "none" }) : ({ width: "100%" })}>
+        <Box style={(this.state.page != 3) ? ({ display: "none" }) : ({ width: "100%" })}>
           <Typography
             variant="h6"
             style={{ marginTop: "35px", marginBottom: "5px" }}
@@ -1765,16 +1805,116 @@ class CoupleResult extends Component {
             </tbody>
           </table>
         </Box>
-        <Box style={{width: "100%", height: "50px"}}></Box>
+
+        <Box style={(this.state.page != 4) ? ({ display: "none" }) : ({ width: "100%" })}>
+          <Typography variant="h6" style={{ lineHeight: "180%" }} >
+            6. D, I, S, C 행동 유형별 설명
+          </Typography>
+
+          {
+            ["D", "I", "S", "C"].map((value, index) => (
+              <>
+                <Typography variant="subtitle1" color="secondary" style={{ lineHeight: "180%" }} >
+                  {index + 1}) {resultAnalysis[value].fullName}
+                </Typography>
+                <Typography variant="subtitle2" color="textPrimary" >
+                  {resultAnalysis[value].description}
+                </Typography>
+                <table className="pref-table">
+                  <tbody>
+                    <tr>
+                      <th rowSpan={3}> 본인 선택 </th>
+                      <th> 자신의 {value}({resultAnalysis[value].name}) 선택 항목 </th>
+                      <th> {husbandDISC[value]} </th>
+                    </tr>
+                    <tr>
+                      <th> 배우자의 {value}({resultAnalysis[value].name}) 선택 항목 </th>
+                      <th> {phusbandDISC[value]} </th>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <th rowSpan={3}> 상대를 선택 </th>
+                      <th> 자신이 배우자를 선택한 {value} 항목 </th>
+                      <th> {wifeDISC[value]} </th>
+                    </tr>
+                    <tr>
+                      <th> 배우자가 나를 선택한 {value} 항목 </th>
+                      <th> {pwifeDISC[value]} </th>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <th rowSpan={3}> 긍정 선택 </th>
+                      <th> 자신이 배우자를 선택한 {value} 긍정 항목 </th>
+                      <th> {myPositivePreferenceNumber[value]} </th>
+                    </tr>
+                    <tr>
+                      <th> 배우자가 나를 선택한 {value} 긍정 항목 </th>
+                      <th> {partnerPositivePreferenceNumber[value]} </th>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <th rowSpan={3}> 부정 선택 </th>
+                      <th> 자신이 배우자를 선택한 {value} 부정 항목 </th>
+                      <th> {myNegativePreferenceNumber[value]} </th>
+                    </tr>
+                    <tr>
+                      <th> 배우자가 나를 선택한 {value} 부정 항목 </th>
+                      <th> {partnerNegativePreferenceNumber[value]} </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <Typography variant="subtitle1" color="primary" >
+                  {resultAnalysis[value].name}({value})의 특징
+                </Typography>
+                {resultAnalysis[value].charaters.map((value, index) => (
+                  <Typography variant="subtitle2" >
+                    - {value}
+                  </Typography>
+                ))}
+                <Typography variant="subtitle1" color="primary" style={{ marginTop: "20px" }} >
+                  {resultAnalysis[value].name}({value})의 장점
+                </Typography>
+                {resultAnalysis[value].pros.map((value, index) => (
+                  <Typography variant="subtitle2" >
+                    - {value}
+                  </Typography>
+                ))}
+                <Typography variant="subtitle1" color="primary" style={{ marginTop: "20px" }} >
+                  {resultAnalysis[value].name}({value})의 단점
+                </Typography>
+                {resultAnalysis[value].cons.map((value, index) => (
+                  <Typography variant="subtitle2" >
+                    - {value}
+                  </Typography>
+                ))}
+                <Typography variant="subtitle1" color="primary" style={{ marginTop: "20px" }} >
+                  {resultAnalysis[value].name}({value})의 부족한 점을 보완하려면..
+                </Typography>
+                {resultAnalysis[value].complementaryPoint.map((value, index) => (
+                  <Typography variant="subtitle2" >
+                    - {value}
+                  </Typography>
+                ))}
+              </>
+
+            ))
+          }
+
+        </Box>
+
+        <Box style={{ width: "100%", height: "50px" }}></Box>
         <Box style={{ position: "fixed", bottom: "0", paddingBottom: "20px", width: "100%", height: "50px", background: "rgb(250, 250, 250)" }}>
           <Box style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-            <IconButton onClick={this.onPreviousClick}><NavigateBeforeIcon style={{fontSize: "30px"}} /></IconButton>
+            <IconButton onClick={this.onPreviousClick}><NavigateBeforeIcon style={{ fontSize: "30px" }} /></IconButton>
             <Box>
               <Typography variant="h5" >
-                {this.state.page}/5
+                {this.state.page}/4
               </Typography>
             </Box>
-            <IconButton onClick={this.onNextClick}><NavigateNextIcon style={{fontSize: "30px"}} /></IconButton>
+            <IconButton onClick={this.onNextClick}><NavigateNextIcon style={{ fontSize: "30px" }} /></IconButton>
           </Box>
         </Box>
       </Box>
