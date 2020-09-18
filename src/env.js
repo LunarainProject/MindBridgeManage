@@ -1,5 +1,5 @@
 /* environment */
 
 export function envGetUrl() {
-    return "http://localhost";
+    return "http://gfs3456.cafe24.com";
 }
