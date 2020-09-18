@@ -11,6 +11,9 @@ import {
 import { random } from "math";
 import MarryDiagnosis from "./MarryDiagnosis/MarryDiagnosis";
 import { envGetUrl } from "../../env";
+import SexLife from "./SexLife/SexLife";
+import Communcation from "./Communication/Communication";
+import Conversation from "./Conversation/Conversation";
 
 export default class ResultRouter extends React.Component {
   constructor(props) {
@@ -22,14 +25,57 @@ export default class ResultRouter extends React.Component {
     switch (this.props.pkgId) {
       //결혼생활 진단 테스트
       case '50':
-          return (
-            <MarryDiagnosis
-              pkgId={this.props.pkgId}
-              content={this.props.content}
-              result={this.props.result}
-              spouseResult={this.props.spouseResult}
-            ></MarryDiagnosis>
-          ) 
+        return (
+          <MarryDiagnosis
+            pkgId={this.props.pkgId}
+            content={this.props.content}
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+          ></MarryDiagnosis>
+        );
+
+      case '51':
+        return (
+          <SexLife
+            pkgId={this.props.pkgId}
+            content={this.props.content}
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+          ></SexLife>
+        );
+
+      case '55':
+        return (
+          <Communcation
+            pkgId={this.props.pkgId}
+            content={this.props.content}
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+          ></Communcation>
+        );
+
+      
+      case '60':
+        return (
+          <Conversation
+            pkgId={this.props.pkgId}
+            content={this.props.content}
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+            gender="male"
+          ></Conversation>
+        );
+
+      case '61':
+        return (
+          <Conversation
+            pkgId={this.props.pkgId}
+            content={this.props.content}
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}
+            gender="female"
+          ></Conversation>
+        );
 
       case '27':
         return <div></div>;
