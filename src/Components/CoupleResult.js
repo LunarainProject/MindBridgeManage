@@ -8,7 +8,7 @@ import Iframe from "react-iframe";
 import mdTest from "../md/1.md";
 import StartPageMain from "../Components/StartPageMain";
 import StartPageSub from "../Components/StartPageSub";
-import testJson from "../survey/test.json";
+import testJson from "../sample/content.json";
 import discJson from "../survey/disc.json";
 import { abs } from "math";
 import Chart from "../disc/Chart";
@@ -280,12 +280,14 @@ class CoupleResult extends Component {
     let myCheck = new Array();
     let wifeCheck = new Array();
 
-    wife.map(
+    console.log("testJson", testJson)
+
+    wife.forEach(
       (val, ind) =>
         (myCheck[ind] =
           testJson.page_list[ind].question_list[0].string_list[val - 1])
     );
-    phusband.map(
+    phusband.forEach(
       (val, ind) =>
         (wifeCheck[ind] =
           testJson.page_list[ind].question_list[0].string_list[val - 1])
@@ -294,12 +296,12 @@ class CoupleResult extends Component {
     let pmyCheck = new Array();
     let pwifeCheck = new Array();
 
-    husband.map(
+    husband.forEach(
       (val, ind) =>
         (pmyCheck[ind] =
           testJson.page_list[ind].question_list[0].string_list[val - 1])
     );
-    pwife.map(
+    pwife.forEach(
       (val, ind) =>
         (pwifeCheck[ind] =
           testJson.page_list[ind].question_list[0].string_list[val - 1])
