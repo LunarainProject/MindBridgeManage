@@ -1,28 +1,28 @@
-import React, {Component} from 'react';
-import {Button, Box, AppBar, Toolbar, IconButton, Typography, Chip, Radio, RadioGroup} from '@material-ui/core';
-import { AccessAlarm, ThreeDRotation,ArrowBackIos, ArrowForwardIos, LineWeight } from '@material-ui/icons';
+import React, { Component } from 'react';
+import { Button, Box, AppBar, Toolbar, IconButton, Typography, Chip, Radio, RadioGroup } from '@material-ui/core';
+import { AccessAlarm, ThreeDRotation, ArrowBackIos, ArrowForwardIos, LineWeight } from '@material-ui/icons';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 
 class ProblemType3 extends React.Component {
-    
-    constructor(props){
-      super(props)
-      this.props.onCreate((this.props.pagenumber + 1) + "_" + (this.props.problemnumber + 1) + "_0");
+
+    constructor(props) {
+        super(props)
+        this.props.onCreate((this.props.pagenumber + 1) + "_" + (this.props.problemnumber + 1) + "_0");
     }
 
     handleChange = (e) => {
-      console.log(e.target.value + "");
-      console.log(e.target.checked + "");
+        console.log(e.target.value + "");
+        console.log(e.target.checked + "");
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.onCreate((this.props.pagenumber + 1) + "_" + (this.props.problemnumber + 1) + "_0");
     }
-    render(){
-        
+    render() {
+
         const { onChangeHandler } = this.props;
 
         let radioName = (this.props.pagenumber + 1) + "_" + (this.props.problemnumber + 1);
@@ -31,12 +31,12 @@ class ProblemType3 extends React.Component {
             display: "flex",
             justifyContent: "center",
             flexWrap: "wrap",
-            padding: "20px", 
+            padding: "20px",
             fontWeight: "500"
         }
 
         const InsideStyle = {
-            background:"rgb(245,245,245)",
+            background: "rgb(245,245,245)",
             width: "90vw",
             height: "11.5vh auto",
             borderRadius: "10px",
@@ -45,11 +45,11 @@ class ProblemType3 extends React.Component {
             paddingTop: "1vh",
             paddingBottom: "1.2vh"
         }
-        
+
         const ExpressTypo = {
-            padding: "20px", 
+            padding: "20px",
             marginBottom: "2vh",
-            textAlign: "left", 
+            textAlign: "left",
             wordBreak: "keep-all"
         }
 
@@ -98,34 +98,35 @@ class ProblemType3 extends React.Component {
             borderRadius: "20px"
         }
         const rightBox = {
-        width: "66vw", height: "6vh", display:"flex", justifyContent: "flex-start", alignItems: "center"
+            width: "66vw", height: "6vh", display: "flex", justifyContent: "flex-start", alignItems: "center"
         }
-        
+
         return (
-        <Box style={OutStyle}>
-            <Typography variant="h6" style={ExpressTypo} >
-                {this.props.title}
-            </Typography>
+            <Box style={OutStyle}>
+                <Typography variant="h6" style={ExpressTypo} >
+                    {this.props.title}
+                </Typography>
 
-            <FormControl component="fieldset">
-                <RadioGroup>
-                    <Box style={InsideStyle} boxShadow ={1}>
-                    {
-                        this.props.question.map((val, index)=>(
-                        <Box style={{width: "90vw", height: "6vh", background:"#00000000", display:"flex", flexDirection: "raw"}} key={radioName+"_" +val + index}>
+                <FormControl component="fieldset">
+                    <RadioGroup>
+                        <Box style={InsideStyle} boxShadow={1}>
+                            {
+                                this.props.question.map((val, index) => (
+                                    <Box style={{ width: "90vw", height: "6vh", background: "#00000000", display: "flex", flexDirection: "raw" }} key={radioName + "_" + val + index}>
 
-                            <Box style={ObjectBox}>
-                                <FormControlLabel label={val} control={<Radio lab size="medium" color="primary" className="MuiSvgIcon-root" />} onChange={onChangeHandler} value={radioName+"_"+(index+1)} name={radioName} style={{margin:0}} />
-                            </Box>
+                                        <Box style={ObjectBox}>
+                                            <FormControlLabel label={val} control={<Radio lab size="medium" color="primary" className="MuiSvgIcon-root" />} 
+                                            onChange={onChangeHandler} value={radioName + "_" + (index + 1)} name={radioName} style={{ margin: 0 }} />
+                                        </Box>
+
+                                    </Box>
+                                ))
+                            }
 
                         </Box>
-                        ))
-                    }
-                    
-                </Box>
-                </RadioGroup>
-            </FormControl>
-        </Box>
+                    </RadioGroup>
+                </FormControl>
+            </Box>
         );
     }
 }
