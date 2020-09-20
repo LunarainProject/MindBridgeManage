@@ -119,7 +119,8 @@ class ProblemType1 extends React.Component {
                       {
                         this.props.question.map((val, index) => (
                           <Box style={ObjectBox} key={radioName + "_1_" + (index + 1)}>
-                            <FormControlLabel control={<Radio size="medium" color="primary" className="MuiSvgIcon-root" />} onChange={this.props.onChangeHandler} value={radioName + "_1_" + (index + 1)} style={{ margin: 0 }} />
+                            <FormControlLabel control={<Radio size="medium" color="primary" className="MuiSvgIcon-root" />} 
+                            onChange={this.props.onChangeHandler} value={radioName + "_1_" + (index + 1)} style={{ margin: 0 }} />
                           </Box>
                         ))
                       }
@@ -144,7 +145,8 @@ class ProblemType1 extends React.Component {
                       {
                         this.props.question.map((val, index) => (
                           <Box style={ObjectBox} key={radioName + "_2_" + (index + 1)}>
-                            <FormControlLabel control={<Radio color="primary" />} onChange={this.props.onChangeHandler} value={radioName + "_2_" + (index + 1)} style={{ margin: 0 }} />
+                            <FormControlLabel control={<Radio color="primary" />} onChange={this.props.onChangeHandler} 
+                            value={radioName + "_2_" + (index + 1)} style={{ margin: 0 }} />
                           </Box>
                         ))
                       }

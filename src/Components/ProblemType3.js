@@ -32,6 +32,7 @@ class ProblemType3 extends React.Component {
             justifyContent: "center",
             flexWrap: "wrap",
             padding: "20px",
+            paddingBottom: "40px", 
             fontWeight: "500"
         }
 
@@ -43,7 +44,7 @@ class ProblemType3 extends React.Component {
             display: "flex",
             flexDirection: "column",
             paddingTop: "1vh",
-            paddingBottom: "1.2vh"
+            paddingBottom: "5vh"
         }
 
         const ExpressTypo = {
@@ -85,7 +86,8 @@ class ProblemType3 extends React.Component {
             display: "flex",
             wordBreak: "break-all",
             justifyContent: "flex-start",
-            alignItems: "center"
+            alignItems: "center",
+            margin: "10px"
         }
 
         const BackgroundBox = {
@@ -101,6 +103,10 @@ class ProblemType3 extends React.Component {
             width: "66vw", height: "6vh", display: "flex", justifyContent: "flex-start", alignItems: "center"
         }
 
+        const valBox = (val) => {
+            return <Box style={{lineHeight: "150%", height: "28px" }} >{val}</Box>;
+        }
+
         return (
             <Box style={OutStyle}>
                 <Typography variant="h6" style={ExpressTypo} >
@@ -112,10 +118,11 @@ class ProblemType3 extends React.Component {
                         <Box style={InsideStyle} boxShadow={1}>
                             {
                                 this.props.question.map((val, index) => (
-                                    <Box style={{ width: "90vw", height: "6vh", background: "#00000000", display: "flex", flexDirection: "raw" }} key={radioName + "_" + val + index}>
+                                    <Box style={{ width: "90vw", height: "6vh", background: "#00000000", display: "flex", flexDirection: "raw" }}
+                                     key={radioName + "_" + val + index}>
 
                                         <Box style={ObjectBox}>
-                                            <FormControlLabel label={val} control={<Radio lab size="medium" color="primary" className="MuiSvgIcon-root" />} 
+                                            <FormControlLabel label={valBox(val)} control={<Radio lab size="medium" color="primary" className="MuiSvgIcon-root" />} 
                                             onChange={onChangeHandler} value={radioName + "_" + (index + 1)} name={radioName} style={{ margin: 0 }} />
                                         </Box>
 
