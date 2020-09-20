@@ -48,6 +48,7 @@ class CoupleResult extends Component {
 
   onNextClick = () => {
     if (this.state.page != 4) {
+      window.scrollTo(0,0);
       this.setState({
         page: this.state.page + 1,
       })
@@ -56,6 +57,7 @@ class CoupleResult extends Component {
 
   onPreviousClick = () => {
     if (this.state.page != 1) {
+      window.scrollTo(0,0);
       this.setState({
         page: this.state.page - 1,
       })
@@ -218,19 +220,21 @@ class CoupleResult extends Component {
       }
     }
 
+    // preference >> 1: 매우 긍정, 2: 긍정, 3: 보통, 4: 부정, 5: 매우 부정
+
     myPreference.map(
       (val, index) =>
         (myPreferenceNumber[val] += preference[index] - 3,
-          (preference[index] > 3) && (myPositivePreferenceNumber[val]++),
-          (preference[index] < 3) && (myNegativePreferenceNumber[val]++))
+          (preference[index] < 3) && (myPositivePreferenceNumber[val]++),
+          (preference[index] > 3) && (myNegativePreferenceNumber[val]++))
     );
 
     console.log("myPositivePreferenceNumber", myPositivePreferenceNumber);
 
     partnerPreference.map(
-      (val, index) => (partnerPreferenceNumber[val] += ppreference[index] - 3,
-        (ppreference[index] > 3) && (partnerPositivePreferenceNumber[val]++),
-        (ppreference[index] < 3) && (partnerNegativePreferenceNumber[val]++))
+      (val, index) => (partnerPreferenceNumber[val] += ppreference[index] -3,
+        (ppreference[index] < 3) && (partnerPositivePreferenceNumber[val]++),
+        (ppreference[index] > 3) && (partnerNegativePreferenceNumber[val]++))
     );
 
     myPreferenceNumber["T"] =
@@ -247,29 +251,29 @@ class CoupleResult extends Component {
 
     ["D", "I", "S", "C", "T"].forEach((val) => {
       if (myPreferenceNumber[val] > 6) {
-        myPreferenceNumber[val] = "매우 긍정";
+        myPreferenceNumber[val] = "매우 부정";
       } else if (myPreferenceNumber[val] > 0) {
-        myPreferenceNumber[val] = "다소 긍정";
+        myPreferenceNumber[val] = "다소 부정";
       } else if (myPreferenceNumber[val] == 0) {
         myPreferenceNumber[val] = "보통";
       } else if (myPreferenceNumber[val] > -6) {
-        myPreferenceNumber[val] = "다소 부정";
+        myPreferenceNumber[val] = "다소 긍정";
       } else if (myPreferenceNumber[val] <= -6) {
-        myPreferenceNumber[val] = "매우 부정";
+        myPreferenceNumber[val] = "매우 긍정";
       }
     });
 
     ["D", "I", "S", "C", "T"].forEach((val) => {
       if (partnerPreferenceNumber[val] > 6) {
-        partnerPreferenceNumber[val] = "매우 긍정";
+        partnerPreferenceNumber[val] = "매우 부정";
       } else if (partnerPreferenceNumber[val] > 0) {
-        partnerPreferenceNumber[val] = "다소 긍정";
+        partnerPreferenceNumber[val] = "다소 부정";
       } else if (partnerPreferenceNumber[val] == 0) {
         partnerPreferenceNumber[val] = "보통";
       } else if (partnerPreferenceNumber[val] > -6) {
-        partnerPreferenceNumber[val] = "다소 부정";
+        partnerPreferenceNumber[val] = "다소 긍정";
       } else if (partnerPreferenceNumber[val] <= -6) {
-        partnerPreferenceNumber[val] = "매우 부정";
+        partnerPreferenceNumber[val] = "매우 긍정";
       }
     });
 
@@ -1414,16 +1418,16 @@ class CoupleResult extends Component {
                 <th>배우자가 나를 체크한 스타일</th>
               </tr>
               <tr>
-                <td>높은C형</td>
-                <td>ID형</td>
+                <td>{new DiscDataManage(husbandDISC)?.getTypes()?.Type ?? ""}형</td>
+                <td>{new DiscDataManage(pwifeDISC)?.getTypes()?.Type ?? ""}형</td>
               </tr>
               <tr>
                 <th>배우자 스타일</th>
                 <th>내가 배우자를 체크한 스타일</th>
               </tr>
               <tr>
-                <td>IDS형</td>
-                <td>CI형</td>
+                <td>{new DiscDataManage(phusbandDISC)?.getTypes()?.Type ?? ""}형</td>
+                <td>{new DiscDataManage(wifeDISC)?.getTypes()?.Type ?? ""}형</td>
               </tr>
             </tbody>
           </table>
@@ -1774,13 +1778,13 @@ class CoupleResult extends Component {
                   <td>{index + 1}</td>
                   <td>{mine}</td>
                   <td>
-                    {preference[index] == 5 ? (
+                    {preference[index] == 1 ? (
                       <Box style={{ color: 'rgb(100, 100, 250)' }}>oo</Box>
-                    ) : preference[index] == 1 ? (
+                    ) : preference[index] == 5 ? (
                       <Box style={{ color: 'rgb(250, 100, 100)' }}>xx</Box>
-                    ) : preference[index] == 4 ? (
-                      <Box style={{ color: 'rgb(100, 100, 250)' }}>o</Box>
                     ) : preference[index] == 2 ? (
+                      <Box style={{ color: 'rgb(100, 100, 250)' }}>o</Box>
+                    ) : preference[index] == 4 ? (
                       <Box style={{ color: 'rgb(250, 100, 100)' }}>x</Box>
                     ) : (
                               <Box>-</Box>
@@ -1788,13 +1792,13 @@ class CoupleResult extends Component {
                   </td>
                   <td>{pwifeCheck[index]}</td>
                   <td>
-                    {ppreference[index] == 5 ? (
+                    {ppreference[index] == 1 ? (
                       <Box style={{ color: 'rgb(100, 100, 250)' }}>oo</Box>
-                    ) : ppreference[index] == 1 ? (
+                    ) : ppreference[index] == 5 ? (
                       <Box style={{ color: 'rgb(250, 100, 100)' }}>xx</Box>
-                    ) : ppreference[index] == 4 ? (
-                      <Box style={{ color: 'rgb(100, 100, 250)' }}>o</Box>
                     ) : ppreference[index] == 2 ? (
+                      <Box style={{ color: 'rgb(100, 100, 250)' }}>o</Box>
+                    ) : ppreference[index] == 4 ? (
                       <Box style={{ color: 'rgb(250, 100, 100)' }}>x</Box>
                     ) : (
                               <Box>-</Box>
