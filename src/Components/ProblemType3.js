@@ -82,7 +82,7 @@ class ProblemType3 extends React.Component {
 
         const ObjectBox = {
             width: "100%",
-            height: "8vh",
+            height: "10vh",
             display: "flex",
             wordBreak: "break-all",
             justifyContent: "flex-start",
@@ -104,7 +104,7 @@ class ProblemType3 extends React.Component {
         }
 
         const valBox = (val) => {
-            return <Box style={{lineHeight: "150%", height: "28px" }} >{val}</Box>;
+            return <Box style={{lineHeight: "120%", height: "28px" }} >{val}</Box>;
         }
 
         return (
