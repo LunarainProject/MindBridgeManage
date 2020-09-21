@@ -82,7 +82,7 @@ class ProblemType3 extends React.Component {
 
         const ObjectBox = {
             width: "100%",
-            height: "10vh",
+            height: "40px",
             display: "flex",
             wordBreak: "break-all",
             justifyContent: "flex-start",
@@ -104,7 +104,7 @@ class ProblemType3 extends React.Component {
         }
 
         const valBox = (val) => {
-            return <Box style={{lineHeight: "120%", height: "28px" }} >{val}</Box>;
+            return <Box style={{lineHeight: "120%", display: "flex", height: "28px", flexdirection: "row", alignItems: "center", justifyContent: "center" }} >{val}</Box>;
         }
 
         return (
@@ -118,7 +118,7 @@ class ProblemType3 extends React.Component {
                         <Box style={InsideStyle} boxShadow={1}>
                             {
                                 this.props.question.map((val, index) => (
-                                    <Box style={{ width: "90vw", height: "6vh", background: "#00000000", display: "flex", flexDirection: "raw" }}
+                                    <Box style={{ width: "90vw", height: "40px", background: "#00000000", display: "flex", flexDirection: "raw" }}
                                      key={radioName + "_" + val + index}>
 
                                         <Box style={ObjectBox}>
