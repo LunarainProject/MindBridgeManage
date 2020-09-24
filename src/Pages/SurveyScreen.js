@@ -102,11 +102,11 @@ class SurveyScreen extends React.Component {
     if (this.state.count == (this.state.contentObj.page_list.length - 1)) {
       axios({
         method: 'post',
-        url: envGetUrl()+'/connectedSheet/upload.php',
+        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
-          user_srl: this.state.UserId,
+          access_token: this.state.UserId,
           answer: this.state.answer,
           complete: false,
         },
@@ -126,7 +126,7 @@ class SurveyScreen extends React.Component {
       this.setState({ count: this.state.count + 1 });
       axios({
         method: 'post',
-        url: envGetUrl()+'/connectedSheet/upload.php',
+        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
@@ -161,7 +161,7 @@ class SurveyScreen extends React.Component {
       }, 2000)
       axios({
         method: 'post',
-        url: envGetUrl()+'/connectedSheet/upload.php',
+        url: 'http://gfs3456.cafe24.com/connectedSheet/upload.php',
         params: {
           pkg_id: this.state.pkgId,
           page_number: "" + (this.state.count + 1),
@@ -201,7 +201,7 @@ class SurveyScreen extends React.Component {
   GetDataInServer = () => {
     axios({
       method: 'post',
-      url: envGetUrl()+'/connectedSheet/index.php',
+      url: 'http://gfs3456.cafe24.com/connectedSheet/index.php',
       params: {
         pkg_id: this.state.pkgId
       },
@@ -234,10 +234,10 @@ class SurveyScreen extends React.Component {
   CountUp = () => {
     axios({
       method: 'post',
-      url: envGetUrl()+'/connectedSheet/count.php',
+      url: 'http://gfs3456.cafe24.com/connectedSheet/count.php',
       params: {
         pkg_id: this.state.pkgId,
-        user_id: this.state.UserId,
+        access_token: this.state.UserId,
       },
       header: {
         'Access-Control-Allow-Origin': '*',
