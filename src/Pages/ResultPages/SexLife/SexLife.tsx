@@ -159,22 +159,27 @@ export default class SexLife extends React.Component<Props, State> {
       return ["", ""];
     };
 
-    const diff: number[] = [];
-    for (let i = 0; i < resultOnlyAnswer.length; i++) {
-      diff.push(
-        Math.abs(resultOnlyAnswer[i].answer - spouseResultOnlyAnswer[i].answer)
-      );
+    let greatDivergence: string[] = [];
+    if(resultOnlyAnswer.length === spouseResultOnlyAnswer.length) {
+      const diff: number[] = [];
+      for (let i = 0; i < resultOnlyAnswer.length; i++) {
+        diff.push(
+          Math.abs(resultOnlyAnswer[i].answer - spouseResultOnlyAnswer[i].answer)
+        );
+      }
+
+      console.log("DIFF: ", diff);
+      console.log(content);
+
+      greatDivergence = diff
+        .map((num, index) => ({ num, index }))
+        .filter(({ num }) => num >= 2)
+        .map(({ index }) => index)
+        .map((index) => content.page_list[index].question_list[0].question_title);
+      console.log(greatDivergence);
     }
 
-    console.log("DIFF: ", diff);
-    console.log(content);
-
-    const greatDivergence = diff
-      .map((num, index) => ({ num, index }))
-      .filter(({ num }) => num >= 2)
-      .map(({ index }) => index)
-      .map((index) => content.page_list[index].question_list[0].question_title);
-    console.log(greatDivergence);
+    
 
     return {
       selfTotal: self,

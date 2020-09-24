@@ -173,30 +173,30 @@ export default class Affinity extends React.Component<Props, State> {
     let result: res[] = [];
     let spouseResult: res[] = [];
 
-    result = props.result ?? [];
-    spouseResult = props.spouseResult ?? [];
+    result = props.result;
+    spouseResult = props.spouseResult;
 
     /* test result */
-    {
-      for (var i = 1; i <= 20; i++) {
-        for (var j = 1; j <= 1; j++) {
-          result.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 4 + 0.5),
-          });
-        }
-      }
-      for (var i = 1; i <= 20; i++) {
-        for (var j = 1; j <= 1; j++) {
-          spouseResult.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 4 + 0.5),
-          });
-        }
-      }
-    }
+    // {
+    //   for (var i = 1; i <= 20; i++) {
+    //     for (var j = 1; j <= 1; j++) {
+    //       result.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 4 + 0.5),
+    //       });
+    //     }
+    //   }
+    //   for (var i = 1; i <= 20; i++) {
+    //     for (var j = 1; j <= 1; j++) {
+    //       spouseResult.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 4 + 0.5),
+    //       });
+    //     }
+    //   }
+    // }
 
     const resultOnlyAnswer = result.filter((res) => res.problem_number === 1);
     const spouseResultOnlyAnswer = spouseResult.filter(
@@ -265,7 +265,7 @@ export default class Affinity extends React.Component<Props, State> {
             marginBottom: "20px",
           }}
         >
-          부부 의사소통 검사 결과
+          부부 친밀감 테스트 결과
         </Typography>
 
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>

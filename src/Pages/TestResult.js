@@ -143,7 +143,13 @@ class TestResult extends Component {
                         <CoupleResult result={this.state.result} content={this.state.content} 
                         partnerCount={this.props.match.params.partnerCount} user_srl={this.state.user_srl} count={this.state.count} ></CoupleResult>
                     ):(
-                    <ResultRouter
+                        <div>
+                            {this.state.spouseCount === '-1' && (
+                                <p>
+                                    * 내 결과만 보기를 선택하셨습니다. 배우자의 결과는 나타나지 않습니다.
+                                </p>
+                            )}
+                            <ResultRouter
                         pkgId={this.state.pkg_id}
                         content={this.state.content}
                         result={this.state.result}
@@ -152,6 +158,8 @@ class TestResult extends Component {
                         spouseResult={this.state.spouseResult}
                         user_srl={this.state.user_srl}
                     ></ResultRouter>
+                        </div>
+                    
                     )
                 }
             </Box>
