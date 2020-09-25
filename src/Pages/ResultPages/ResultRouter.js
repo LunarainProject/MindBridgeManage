@@ -17,7 +17,8 @@ import Conversation from "./Conversation/Conversation";
 import Affinity from "./Affinity/Affinity";
 import Respect from "./Respect/Respect";
 import Economy from "./Economy/Economy";
-import Question from "./Question/Question"
+import Question from "./Question/Question";
+import LoveLang from "./LoveLang/LoveLang";
 
 export default class ResultRouter extends React.Component {
   constructor(props) {
@@ -121,12 +122,22 @@ export default class ResultRouter extends React.Component {
           ></Question>
         )
 
+      case '800028':
+        return (
+          <LoveLang
+            pkgId={this.props.pkgId}
+            content={this.props.content}  
+            result={this.props.result}
+            spouseResult={this.props.spouseResult}          
+          ></LoveLang>
+        )
+
       case '27':
         return <div></div>;
       default:
         return (
           <div>
-            {this.state.result.map((value) => (
+            {this.props.result.map((value) => (
               <Box
                 style={{
                   display: "flex",

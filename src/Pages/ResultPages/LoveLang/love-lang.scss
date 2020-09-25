@@ -1,0 +1,57 @@
+.ll-table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    tr {
+        text-align: center;
+
+        height: 35px;
+    }
+
+    td {
+        width: 50%;
+    }
+
+    .graph {
+        width: 30%;
+    }
+}
+
+.ll-test-table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    tr:nth-child(6n+1) > td {
+        display: none;
+    }
+
+    tr {
+        td:nth-child(2) {
+            text-align: right;
+            padding-right: 4px;
+        }
+    }
+
+    th {
+        width: 25%;
+        border: 1px solid black;
+    }
+    
+    td {
+        border: 1px solid black;
+        padding-left: 5px;
+    }
+}
+
+.ll-r-table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+    td {
+        border: 1px solid black;
+        text-align: center;
+    }
+}
