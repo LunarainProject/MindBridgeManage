@@ -159,8 +159,8 @@ export default class LoveLang extends React.Component<Props, State> {
     
     /* test result */
     // {
-    //   for (var i = 1; i <= 30; i++) {
-    //     for (var j = 1; j <= 1; j++) {
+    //   for (var i = 1; i <= 6; i++) {
+    //     for (var j = 1; j <= 5; j++) {
     //       result.push({
     //         page_number: i,
     //         problem_number: j,
@@ -168,8 +168,8 @@ export default class LoveLang extends React.Component<Props, State> {
     //       });
     //     }
     //   }
-    //   for (var i = 1; i <= 30; i++) {
-    //     for (var j = 1; j <= 1; j++) {
+    //   for (var i = 1; i <= 6; i++) {
+    //     for (var j = 1; j <= 5; j++) {
     //       spouseResult.push({
     //         page_number: i,
     //         problem_number: j,
@@ -179,10 +179,8 @@ export default class LoveLang extends React.Component<Props, State> {
     //   }
     // }
 
-    const resultOnlyAnswer = result.filter((res) => res.problem_number === 1);
-    const spouseResultOnlyAnswer = spouseResult.filter(
-      (res) => res.problem_number === 1
-    );
+    const resultOnlyAnswer = result;
+    const spouseResultOnlyAnswer = spouseResult;
     
     const self = new LangManager();
     const spouse = new LangManager();
