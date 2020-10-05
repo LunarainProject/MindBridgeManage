@@ -7,6 +7,7 @@ type res = {
   page_number: number;
   problem_number: number;
   answer: number;
+  gender: number;
 };
 
 type Props = {
@@ -136,10 +137,8 @@ export default class Communcation extends React.Component<Props, State> {
 
     console.log("result, spouseResult: ", result, spouseResult);
 
-    const resultOnlyAnswer = result.filter((res) => res.problem_number === 1);
-    const spouseResultOnlyAnswer = spouseResult.filter(
-      (res) => res.problem_number === 1
-    );
+    const resultOnlyAnswer = result.filter((res) => res.gender === 1);
+    const spouseResultOnlyAnswer = spouseResult.filter((res) => res.gender === 1);
 
     const Positive = [1, 2, 7, 10, 13, 15, 17, 18];
 
