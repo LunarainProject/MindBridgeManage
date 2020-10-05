@@ -155,11 +155,11 @@ export default class Economy extends React.Component<Props, State> {
             marginBottom: "20px",
           }}
         >
-          부부 존경지수 체크리스트 결과
+          가정 경제 테스트 결과
         </Typography>
 
         <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-          <Typography variant="subtitle1">[존경지수 그래프]</Typography>
+          <Typography variant="subtitle1">[가정 경제 지수 그래프]</Typography>
         </div>
 
         <div style={{ marginTop: "10px", marginBottom: "30px", position: "relative" }}>
