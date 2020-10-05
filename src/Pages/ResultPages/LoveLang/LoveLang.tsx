@@ -158,26 +158,26 @@ export default class LoveLang extends React.Component<Props, State> {
     spouseResult = props.spouseResult ?? [];
     
     /* test result */
-    {
-      for (var i = 1; i <= 6; i++) {
-        for (var j = 1; j <= 5; j++) {
-          result.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 1 + 1),
-          });
-        }
-      }
-      for (var i = 1; i <= 6; i++) {
-        for (var j = 1; j <= 5; j++) {
-          spouseResult.push({
-            page_number: i,
-            problem_number: j,
-            answer: Math.round(Math.random() * 1 + 1),
-          });
-        }
-      }
-    }
+    // {
+    //   for (var i = 1; i <= 6; i++) {
+    //     for (var j = 1; j <= 5; j++) {
+    //       result.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 1 + 1),
+    //       });
+    //     }
+    //   }
+    //   for (var i = 1; i <= 6; i++) {
+    //     for (var j = 1; j <= 5; j++) {
+    //       spouseResult.push({
+    //         page_number: i,
+    //         problem_number: j,
+    //         answer: Math.round(Math.random() * 1 + 1),
+    //       });
+    //     }
+    //   }
+    // }
 
     const resultOnlyAnswer = result;
     const spouseResultOnlyAnswer = spouseResult;
