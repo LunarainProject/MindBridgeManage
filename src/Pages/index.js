@@ -15,3 +15,4 @@ export { default as ColumnScreen } from './ColumnScreen';
 export { default as VideoManage } from './VideoManage';
 export { default as AddVideo } from './AddVideo';
 export { default as RevisePkg } from './RevisePkg';
+export { default as Login } from './admin/Login';

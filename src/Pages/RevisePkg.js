@@ -7,6 +7,7 @@ import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
 import { useHistory } from "react-router-dom";
 import { envGetUrl } from '../env';
+import { checkAdmin } from '../api/check'
 
 
 const BodyStyle = { width: "100%", height: "100% auto" };
@@ -25,6 +26,9 @@ const fullStyle = { width: "100%", height: "100%" };
 class RevisePkg extends Component {
     constructor(props) {
         super(props);
+
+        checkAdmin();
+
         this.state = {
             message: "카드에 들어갈 패키지 파일을 업로드 해주세요. (.survey) - 업로드하지 않을시 기존 데이터 유지",
             ImgMessage: "카드에 들어갈 프로필 사진을 업로드 해주세요. 16:9 권장 (.jpg, .jpeg, .png) - 업로드하지 않을시 기존 데이터 유지",
