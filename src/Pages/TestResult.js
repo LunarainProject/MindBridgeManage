@@ -32,6 +32,9 @@ class TestResult extends Component {
     async componentDidMount(){
         console.log(this.state);
         let response;
+
+        console.log(envGetUrl()+`/api/testResult.php?access_token=${this.state.user_srl}&pkg_id=${this.state.pkg_id}&count=${this.state.count}`);
+
         try {
             response = await axios({
                 method: 'post',
@@ -92,9 +95,9 @@ class TestResult extends Component {
         if(coupleJson?.couple == 'true') {
             let response;
             let spouse = [];
-            console.log(`${envGetUrl()}/api/PartnerTestResult2.php?access_token=${this.state.user_srl}&pkg_id=${this.state.pkg_id}&count=${this.state.spouseCount}`);
+            console.log(`${envGetUrl()}/api/partnerTestResult2.php?access_token=${this.state.user_srl}&pkg_id=${this.state.pkg_id}&count=${this.state.spouseCount}`);
             try {
-            response = await fetch(`${envGetUrl()}/api/PartnerTestResult2.php?access_token=${this.state.user_srl}&pkg_id=${this.state.pkg_id}&count=${this.state.spouseCount}`)
+            response = await fetch(`${envGetUrl()}/api/partnerTestResult2.php?access_token=${this.state.user_srl}&pkg_id=${this.state.pkg_id}&count=${this.state.spouseCount}`)
             } catch(e) {    
             console.log('fetch error: ', e);
             }
