@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import {
     Main, About, TestManage, ColumnManage, UserManage, AddPkg, AddCol, ee, ModifyPkg,
-    SmsTest, TestStartPage, TestResult, CoupleManage, ColumnScreen, VideoManage, AddVideo, RevisePkg
+    SmsTest, TestStartPage, TestResult, CoupleManage, ColumnScreen, VideoManage, AddVideo, RevisePkg, Login
 } from 'Pages';
 
 
@@ -27,6 +27,7 @@ class App extends Component {
                 <Route exact path="/manage/ColumnScreen/:columnSrl" component={ColumnScreen} />
                 <Route exact path="/manage/VideoManage/AddVideo" component={AddVideo} />
                 <Route exact path="/manage/VideoManage" component={VideoManage} />
+                <Route exact path="/manage/Login" component={Login} />
             </div>
         );
     }

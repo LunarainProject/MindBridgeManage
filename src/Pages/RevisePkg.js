@@ -7,6 +7,7 @@ import HeaderContainer from '../Components/HeaderContainer.js';
 import SurveyCard from '../Components/SurveyCard';
 import { useHistory } from "react-router-dom";
 import { envGetUrl } from '../env';
+import { checkAdmin } from '../api/check'
 
 
 const BodyStyle = { width: "100%", height: "100% auto" };
@@ -25,9 +26,12 @@ const fullStyle = { width: "100%", height: "100%" };
 class RevisePkg extends Component {
     constructor(props) {
         super(props);
+
+        checkAdmin();
+
         this.state = {
-            message: "카드에 들어갈 패키지 파일을 업로드 해주세요. (.survey)",
-            ImgMessage: "카드에 들어갈 프로필 사진을 업로드 해주세요. 16:9 권장 (.jpg, .jpeg, .png)",
+            message: "카드에 들어갈 패키지 파일을 업로드 해주세요. (.survey) - 업로드하지 않을시 기존 데이터 유지",
+            ImgMessage: "카드에 들어갈 프로필 사진을 업로드 해주세요. 16:9 권장 (.jpg, .jpeg, .png) - 업로드하지 않을시 기존 데이터 유지",
             text: ".survey파일 업로드",
             ImgText: "이미지 업로드",
             Title: "Title",
@@ -45,8 +49,8 @@ class RevisePkg extends Component {
     }
 
     UploadPost = () => {
-        if (this.state.Title != "Title" && this.state.SubTitle != "SubTitle" && this.state.message != "카드에 들어갈 패키지 파일을 업로드 해주세요. (.survey)"
-            && this.state.Description != "Description" && this.state.ImgMessage != "카드에 들어갈 프로필 사진을 업로드 해주세요. 16:9 권장 (.jpg, .jpeg, .png)"
+        if (this.state.Title != "Title" && this.state.SubTitle != "SubTitle"
+            && this.state.Description != "Description"
             && this.state.pkgTitle != "설명 페이지에 들어갈 패키지의 제목을 입력해주세요." && this.state.questionNumber != "설명 페이지에 들어갈 문항 개수를 입력해주세요. ex) 40"
             && this.state.checkContent != "설명 페이지에 들어갈 테스트의 설명을 입력해주세요."
         ) {
@@ -55,7 +59,7 @@ class RevisePkg extends Component {
                 || (this.state.ImgMessage).includes(".PNG"))) {
                 axios({
                     method: 'post',
-                    url: envGetUrl()+'/api/RevisePkg.php',
+                    url: envGetUrl() + '/api/RevisePkg.php',
                     params: {
                         Title: this.state.Title,
                         SubTitle: this.state.SubTitle,
@@ -80,9 +84,16 @@ class RevisePkg extends Component {
                         console.log("error : " + error);
                     });
                 const formData = new FormData();
-                formData.append('selectFile', this.state.fileUpload);
-                formData.append('ImgFile', this.state.imgUpload);
-                axios.post(envGetUrl()+"/api/RevisePkgFile.php?count=" + this.props.match.params.srl, formData).then(res => {
+
+                if(this.state.message != '카드에 들어갈 패키지 파일을 업로드 해주세요. (.survey) - 업로드하지 않을시 기존 데이터 유지'){
+                    formData.append('selectFile', this.state.fileUpload);
+                }
+
+                if(this.state.ImgMessage != '카드에 들어갈 프로필 사진을 업로드 해주세요. 16:9 권장 (.jpg, .jpeg, .png) - 업로드하지 않을시 기존 데이터 유지'){
+                    formData.append('ImgFile', this.state.imgUpload);
+                }
+                
+                axios.post(envGetUrl() + "/api/RevisePkgFile.php?count=" + this.props.match.params.srl, formData).then(res => {
                     console.log("res : " + JSON.stringify(res));
                     alert("테스트 수정이 성공적으로 완료되었습니다.");
                 }).catch(err => {
@@ -102,12 +113,12 @@ class RevisePkg extends Component {
             coupleCheck: e.target.checked
         })
     }
-    
+
 
     componentDidMount() {
         axios({
             method: 'post',
-            url: envGetUrl()+'/api/PkgData.php',
+            url: envGetUrl() + '/api/PkgData.php',
             params: {
                 pkg_id: this.props.match.params.srl,
             },
@@ -309,7 +320,7 @@ class RevisePkg extends Component {
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box style={{...fullStyle, height: "60px", display: "flex", flexDirection: "row", alignItems: "center" }}>
+                            <Box style={{ ...fullStyle, height: "60px", display: "flex", flexDirection: "row", alignItems: "center" }}>
                                 <Box>
                                     <Typography variant="h6" >
                                         커플용 패키지라면 체크해주세요.
@@ -330,7 +341,7 @@ class RevisePkg extends Component {
                     </Card>
 
 
-                    <a href={envGetUrl()+"/editor/"} target="_blank">
+                    <a href={envGetUrl() + "/editor/"} target="_blank">
                         <SurveyCard Plus="true" Title="설문조사 파일 생성 (.survey)" SubTitle="설문조사 파일을 생성하려면 클릭하세요."></SurveyCard>
                     </a>
                 </Container>

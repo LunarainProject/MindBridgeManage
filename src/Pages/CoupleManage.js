@@ -7,6 +7,7 @@ import HeaderContainer from '../Components/HeaderContainer.js';
 import UserCard from '../Components/UserCard';
 import CoupleCard from '../Components/CoupleCard';
 import { envGetUrl } from '../env';
+import { checkAdmin } from '../api/check'
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 
@@ -14,6 +15,9 @@ class CoupleManage extends Component {
 
     constructor(props){
         super(props);
+
+        checkAdmin();
+        
         if((window.location.href).slice(0,-1) != "/"){
             this.props.history.push("/manage/CoupleManage/");
         }

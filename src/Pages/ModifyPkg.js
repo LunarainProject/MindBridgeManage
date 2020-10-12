@@ -7,6 +7,7 @@ import DelSurveyCard from '../Components/DelSurveyCard';
 import HeaderContainer from '../Components/HeaderContainer.js';
 import MainCard from "../Components/MainCard";
 import { envGetUrl } from '../env';
+import { checkAdmin } from '../api/check'
 
 const BodyStyle = {width: "100%", height: "100% auto"};
 const InnerContainerStyle = {width: "100%", height: "100%", background: "#f0f0f000", display: "flex", flexDirection: "column", 
@@ -20,6 +21,9 @@ const ReactMarkDown = require('react-markdown');
 class ModifyPkg extends Component {
     constructor(props){
         super(props);
+
+        checkAdmin();
+
         this.state = {
             srl : this.props.match.params.srl,
             Title : "Title",
