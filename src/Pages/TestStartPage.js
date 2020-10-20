@@ -63,7 +63,7 @@ class UserManage extends Component {
                     )}
                 </Container>
 
-                <Container style={{position: "fixed", bottom: "60px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                <Container style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center"}}>
                     <Box boxShadow = {2} style={{cursor: "pointer"}}>
                         <Link to={surveyLink}>
                             <Button style={{ background:"#ffbad1", width: "270px", height: "50px", }}>

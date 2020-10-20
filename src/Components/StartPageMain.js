@@ -13,7 +13,7 @@ class StartPageMain extends Component {
 
     render() {
         return (
-            <Box style={{ marginBottom: "120px" }}>
+            <Box style={{ marginBottom: "80px" }}>
                 <Box style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                     <Typography variant="h6" style={{ fontWeight: "700" }}>
                         부부 행동 유형 검사란?
