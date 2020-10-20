@@ -40,18 +40,6 @@ class StartPageMain extends Component {
                         display="initial"
                         position="relative" />
                 </Box>
-                <Box style={{ marginTop: "10px", marginBottom: "10px" }}>
-                    <Box>
-                        <Typography variant="h6" style={{ padding: "5px", fontWeight: "700", display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                            부부 행동 유형 테스트 목적?
-                        </Typography>
-                        <Box style={{ padding: "10px", marginTop: "10px" }} boxShadow={2}>
-                            <Typography variant="h7" style={{ padding: "10px", boxSizing: "border-box" }}>
-                                &nbsp;자신의 행동유형과 강점을 발견하고 이를 활용하고 배우자의 행동을 이해하고 효과적으로 상호 관계를 유지하고 개선할 수 있으며 서로에게 맞는 갈등관리, 관계 유지방법, 학습방법을 발견할 수 있습니다.
-                            </Typography>
-                        </Box>
-                    </Box>
-                </Box>
 
                 <Container style={{ marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
                     <Box boxShadow={2} style={{ cursor: "pointer" }}>
@@ -65,6 +53,19 @@ class StartPageMain extends Component {
                     </Box>
                 </Container>
                 
+                <Box style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <Box>
+                        <Typography variant="h6" style={{ padding: "5px", fontWeight: "700", display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                            부부 행동 유형 테스트 목적?
+                        </Typography>
+                        <Box style={{ padding: "10px", marginTop: "10px" }} boxShadow={2}>
+                            <Typography variant="h7" style={{ padding: "10px", boxSizing: "border-box" }}>
+                                &nbsp;자신의 행동유형과 강점을 발견하고 이를 활용하고 배우자의 행동을 이해하고 효과적으로 상호 관계를 유지하고 개선할 수 있으며 서로에게 맞는 갈등관리, 관계 유지방법, 학습방법을 발견할 수 있습니다.
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Box>
+
                 <Box style={{ marginTop: "10px" }}>
                     <img src={discImg} style={{ width: "100%" }}></img>
                 </Box>
