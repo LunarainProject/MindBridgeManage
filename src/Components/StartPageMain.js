@@ -41,7 +41,7 @@ class StartPageMain extends Component {
                         position="relative" />
                 </Box>
 
-                <Container style={{ marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <Container style={{ margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
                     <Box boxShadow={2} style={{ cursor: "pointer" }}>
                         <Link to={surveyLink}>
                             <Button style={{ background: "#ffbad1", width: "270px", height: "50px", }}>
@@ -52,7 +52,7 @@ class StartPageMain extends Component {
                         </Link>
                     </Box>
                 </Container>
-                
+
                 <Box style={{ marginTop: "10px", marginBottom: "10px" }}>
                     <Box>
                         <Typography variant="h6" style={{ padding: "5px", fontWeight: "700", display: "flex", flexDirection: "row", justifyContent: "center" }}>
