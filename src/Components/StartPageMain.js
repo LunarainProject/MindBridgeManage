@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Box, Container, Typography, } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';
 import discImg from "../img/disc.png";
 
@@ -12,6 +13,9 @@ import cImg from "../img/c.png";
 class StartPageMain extends Component {
 
     render() {
+
+        const surveyLink = "/manage/ee/27/" + this.props.id;
+
         return (
             <Box style={{ marginBottom: "80px" }}>
                 <Box style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
@@ -47,9 +51,22 @@ class StartPageMain extends Component {
                             </Typography>
                         </Box>
                     </Box>
-                    <Box style={{ marginTop: "10px" }}>
-                        <img src={discImg} style={{ width: "100%" }}></img>
+                </Box>
+
+                <Container style={{ marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                    <Box boxShadow={2} style={{ cursor: "pointer" }}>
+                        <Link to={surveyLink}>
+                            <Button style={{ background: "#ffbad1", width: "270px", height: "50px", }}>
+                                <Typography variant="h6">
+                                    테스트 시작하기
+                                </Typography>
+                            </Button>
+                        </Link>
                     </Box>
+                </Container>
+                
+                <Box style={{ marginTop: "10px" }}>
+                    <img src={discImg} style={{ width: "100%" }}></img>
                 </Box>
 
                 <Box style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px" }}>
@@ -205,11 +222,11 @@ class StartPageMain extends Component {
                             </Typography>
                         <Typography variant="h7" style={{ marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingLeft: "15px" }}>
                             장점: 협조적이다. 꾸준하다. 쉽게 동의한다. 작업수행이 안정되어 있다. 충성스럽다. 대인관계가 원만하다.
-                             남을 잘 섬긴다. 다른 사람의 의견을 잘 들어준다.
+                            남을 잘 섬긴다. 다른 사람의 의견을 잘 들어준다.
                             </Typography>
                         <Typography variant="h7" style={{ marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingLeft: "15px" }}>
                             단점: 급격한 변화를 꺼린다. 갈등을 회피한다. 지나치게 관대하다.
-                             감정을 잘 표현하지 않는다. 일을 미룬다. 능력에 대한 평가를 과대하게 한다. 우유부단하다. 정해진 기간에 일을 마치기 어렵다.
+                            감정을 잘 표현하지 않는다. 일을 미룬다. 능력에 대한 평가를 과대하게 한다. 우유부단하다. 정해진 기간에 일을 마치기 어렵다.
                             </Typography>
                     </Box>
                     <Box style={{ marginTop: "20px", width: "100%", padding: "10px", boxSizing: "border-box" }} boxShadow={2}>
@@ -262,12 +279,12 @@ class StartPageMain extends Component {
                             신중형(C)의 장단점
                             </Typography>
                         <Typography variant="h7" style={{ marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingLeft: "15px" }}>
-                            장점: 정리정돈을 잘한다. 철저하다. 유능하다. 외교적 수완이 있다. 
+                            장점: 정리정돈을 잘한다. 철저하다. 유능하다. 외교적 수완이 있다.
                             자기 훈련을 잘한다. 분석적이다. 정확하다. 높은 기준을 가지고 있다.
                             </Typography>
                         <Typography variant="h7" style={{ marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingLeft: "15px" }}>
                             단점: 지나치게 조심스럽다. 자발성이 약하다. 세부적인 일에 얽매인다. 의심이 많다.
-                             일하는 방법에 융통성이 없다. 비판에 예민하게 반응한다. 비판하기를 좋아한다. 비관적이다.
+                            일하는 방법에 융통성이 없다. 비판에 예민하게 반응한다. 비판하기를 좋아한다. 비관적이다.
                             </Typography>
                     </Box>
                     <Box style={{ marginTop: "20px", width: "100%", padding: "10px", boxSizing: "border-box" }} boxShadow={2}>
@@ -290,9 +307,9 @@ class StartPageMain extends Component {
                         테스트 하는 방법
                     </Typography>
                 </Box>
-                <Box style={{ marginTop: "20px",  padding: "10px", boxSizing: "border-box"  }} boxShadow={2}>
+                <Box style={{ marginTop: "20px", padding: "10px", boxSizing: "border-box" }} boxShadow={2}>
                     <Typography variant="h7">
-                        ※ 검사 문항 : 40문항<br/><br/>
+                        ※ 검사 문항 : 40문항<br /><br />
                         ※ 체크 사항 : 문항을 보고 자신과 배우자의 행동유형과 가장 가깝다고 생각하는 항목에 체크합니다.<br />
                         (오래 생각하지 마시고, 바로 떠오르는 행동유형에 체크해 주세요)<br /><br />
                         ※ 결과 및 분석<br />

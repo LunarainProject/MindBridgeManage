@@ -57,7 +57,7 @@ class UserManage extends Component {
             <Box style={{width:"100%" ,display: "flex", flexDirection: "column", alignItems: "center", padding: "10px", marginTop: "20px", boxSizing: "border-box"}}>
                 <Container>
                     {(this.props.match.params.pkgSrl == 27)?(
-                        <StartPageMain/>
+                        <StartPageMain id = {this.props.match.params.id} />
                     ):(
                         <StartPageSub pkgSrl = {this.props.match.params.pkgSrl} />
                     )}
