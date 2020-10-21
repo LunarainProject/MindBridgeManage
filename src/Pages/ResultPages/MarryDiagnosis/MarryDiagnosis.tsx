@@ -121,7 +121,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
         [50, 40],
         [80, 60],
         [120, 80],
-        [145, 100],
+        [155, 100],
       ];
       for (let i = 0; i < correspond.length - 1; i++) {
         const left = correspond[i][0];
@@ -147,7 +147,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
         { begin: 21, end: 50, desc: "불행" },
         { begin: 51, end: 80, desc: "보통" },
         { begin: 81, end: 120, desc: "행복" },
-        { begin: 121, end: 145, desc: "매우 행복" },
+        { begin: 121, end: 155, desc: "매우 행복" },
       ];
 
       for (let i = 0; i < table.length; i++) {
@@ -219,7 +219,7 @@ export default class MarryDiagnosis extends React.Component<Props, State> {
           <table className="md-happy-table">
             <tbody>
               <tr>
-                <td>121~145점</td>
+                <td>121~155점</td>
                 <td>매우 행복</td>
                 <td></td>
                 <td></td>
