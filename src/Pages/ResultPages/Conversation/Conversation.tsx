@@ -73,7 +73,6 @@ export default class Conversation extends React.Component<Props, State> {
     result = props.result ?? [];
     spouseResult = props.spouseResult ?? [];
     
-
     /* test result */
     // {
     //   for (var i = 1; i <= 11; i++) {

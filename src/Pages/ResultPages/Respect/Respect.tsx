@@ -214,13 +214,8 @@ export default class Respect extends React.Component<Props, State> {
           <Typography variant="subtitle1">[나눔]</Typography>
         </div>
         <p>
-          1) 우리 부부가 모두 가장 친밀감을 많이 느끼고 있는 부분은 무엇인가?
+          우리 부부가 서로에 대한 존경 상태가 어느 부분에 위치해 있는지 상태를 체크하고, 원인을 나누며 서로 더 존경하기 위한 계획을 세워 보세요!
         </p>
-        <p>
-          2) 우리 부부가 모두 가장 친밀감을 적게 느끼고 있는 부분은 무엇인가?
-        </p>
-        <p>3) 우리 부부에게 친밀감의 간격이 가장 큰 부분은 어디인가?</p>
-        <p>위의 내용을 가지고 이야기를 나누어 보세요.</p>
       </div>
     );
   }
